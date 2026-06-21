@@ -1,0 +1,181 @@
+{
+  "verified_at": "2026-06-21",
+  "node": "v26.0.0",
+  "cases": [
+    {
+      "id": "array_sort_numeric",
+      "name": "Array.sort() 默认字典序排数字",
+      "real_world": "JS 经典坑:Array.prototype.sort() 默认按字符串(字典序)比较,[1,10,2].sort() 得 [1,10,2]。该类 bug 在排行榜/分页/价格排序等真实业务代码中反复出现,MDN 专门为此举例告警。",
+      "swebench": {
+        "instance_id": "evoimmune__realbugs-array_sort_numeric",
+        "problem_statement": "[Array.sort() 默认字典序排数字] JS 经典坑:Array.prototype.sort() 默认按字符串(字典序)比较,[1,10,2].sort() 得 [1,10,2]。该类 bug 在排行榜/分页/价格排序等真实业务代码中反复出现,MDN 专门为此举例告警。\n修复 solution.cjs 使 FAIL_TO_PASS 测试通过,同时不破坏 PASS_TO_PASS 回归测试。",
+        "FAIL_TO_PASS": [
+          "test.cjs"
+        ],
+        "PASS_TO_PASS": [
+          "regress.cjs"
+        ],
+        "repo_hint": "minimal-repro (single-file CommonJS) · 对齐 SWE-bench FAIL/PASS_TO_PASS 契约"
+      },
+      "triage": {
+        "buggy": {
+          "failToPass": false,
+          "passToPass": false,
+          "expect": "FAIL_TO_PASS=false"
+        },
+        "fixed": {
+          "failToPass": true,
+          "passToPass": true,
+          "expect": "both=true"
+        },
+        "wrongPatch": {
+          "failToPass": true,
+          "passToPass": false,
+          "expect": "PASS_TO_PASS=false"
+        }
+      },
+      "verdict": "OK"
+    },
+    {
+      "id": "parseint_radix",
+      "name": "parseInt 缺 radix 误把 0x 前缀当十六进制",
+      "real_world": "parseInt 不传 radix 时,\"0x\"/\"0X\" 前缀会被当十六进制解析:parseInt(\"0x1A\")===26,而显式十进制 parseInt(\"0x1A\",10)===0(到 \"x\" 截断)。eslint 的 radix 规则正是为此而设;解析用户输入的编号/数量串时若混入形如 \"0x..\" 的脏数据,缺 radix 会得到意外大数,该类坑在真实代码中常见。",
+      "swebench": {
+        "instance_id": "evoimmune__realbugs-parseint_radix",
+        "problem_statement": "[parseInt 缺 radix 误把 0x 前缀当十六进制] parseInt 不传 radix 时,\"0x\"/\"0X\" 前缀会被当十六进制解析:parseInt(\"0x1A\")===26,而显式十进制 parseInt(\"0x1A\",10)===0(到 \"x\" 截断)。eslint 的 radix 规则正是为此而设;解析用户输入的编号/数量串时若混入形如 \"0x..\" 的脏数据,缺 radix 会得到意外大数,该类坑在真实代码中常见。\n修复 solution.cjs 使 FAIL_TO_PASS 测试通过,同时不破坏 PASS_TO_PASS 回归测试。",
+        "FAIL_TO_PASS": [
+          "test.cjs"
+        ],
+        "PASS_TO_PASS": [
+          "regress.cjs"
+        ],
+        "repo_hint": "minimal-repro (single-file CommonJS) · 对齐 SWE-bench FAIL/PASS_TO_PASS 契约"
+      },
+      "triage": {
+        "buggy": {
+          "failToPass": false,
+          "passToPass": false,
+          "expect": "FAIL_TO_PASS=false"
+        },
+        "fixed": {
+          "failToPass": true,
+          "passToPass": true,
+          "expect": "both=true"
+        },
+        "wrongPatch": {
+          "failToPass": true,
+          "passToPass": false,
+          "expect": "PASS_TO_PASS=false"
+        }
+      },
+      "verdict": "OK"
+    },
+    {
+      "id": "float_money_rounding",
+      "name": "浮点金额未分位取整(0.1+0.2 类误差)",
+      "real_world": "IEEE-754 浮点累加误差:0.1+0.2===0.30000000000000004。在真实电商/财务代码里直接用浮点累加金额、不做分位(cents)取整,会导致小数尾巴和对账偏差。这是金额处理的头号经典坑,业界普遍建议按整数分计算。",
+      "swebench": {
+        "instance_id": "evoimmune__realbugs-float_money_rounding",
+        "problem_statement": "[浮点金额未分位取整(0.1+0.2 类误差)] IEEE-754 浮点累加误差:0.1+0.2===0.30000000000000004。在真实电商/财务代码里直接用浮点累加金额、不做分位(cents)取整,会导致小数尾巴和对账偏差。这是金额处理的头号经典坑,业界普遍建议按整数分计算。\n修复 solution.cjs 使 FAIL_TO_PASS 测试通过,同时不破坏 PASS_TO_PASS 回归测试。",
+        "FAIL_TO_PASS": [
+          "test.cjs"
+        ],
+        "PASS_TO_PASS": [
+          "regress.cjs"
+        ],
+        "repo_hint": "minimal-repro (single-file CommonJS) · 对齐 SWE-bench FAIL/PASS_TO_PASS 契约"
+      },
+      "triage": {
+        "buggy": {
+          "failToPass": false,
+          "passToPass": false,
+          "expect": "FAIL_TO_PASS=false"
+        },
+        "fixed": {
+          "failToPass": true,
+          "passToPass": true,
+          "expect": "both=true"
+        },
+        "wrongPatch": {
+          "failToPass": true,
+          "passToPass": false,
+          "expect": "PASS_TO_PASS=false"
+        }
+      },
+      "verdict": "OK"
+    },
+    {
+      "id": "proto_pollution_merge",
+      "name": "对象深合并的原型污染(__proto__)",
+      "real_world": "原型污染(prototype pollution):深合并/深拷贝时不过滤 __proto__ 键,攻击者可污染 Object.prototype。该类 CVE 在 lodash.merge、jQuery.extend、minimist 等真实库的历史上多次出现,是 Web 安全的经典漏洞类型。",
+      "swebench": {
+        "instance_id": "evoimmune__realbugs-proto_pollution_merge",
+        "problem_statement": "[对象深合并的原型污染(__proto__)] 原型污染(prototype pollution):深合并/深拷贝时不过滤 __proto__ 键,攻击者可污染 Object.prototype。该类 CVE 在 lodash.merge、jQuery.extend、minimist 等真实库的历史上多次出现,是 Web 安全的经典漏洞类型。\n修复 solution.cjs 使 FAIL_TO_PASS 测试通过,同时不破坏 PASS_TO_PASS 回归测试。",
+        "FAIL_TO_PASS": [
+          "test.cjs"
+        ],
+        "PASS_TO_PASS": [
+          "regress.cjs"
+        ],
+        "repo_hint": "minimal-repro (single-file CommonJS) · 对齐 SWE-bench FAIL/PASS_TO_PASS 契约"
+      },
+      "triage": {
+        "buggy": {
+          "failToPass": false,
+          "passToPass": false,
+          "expect": "FAIL_TO_PASS=false"
+        },
+        "fixed": {
+          "failToPass": true,
+          "passToPass": true,
+          "expect": "both=true"
+        },
+        "wrongPatch": {
+          "failToPass": true,
+          "passToPass": false,
+          "expect": "PASS_TO_PASS=false"
+        }
+      },
+      "verdict": "OK"
+    },
+    {
+      "id": "includes_nan",
+      "name": "indexOf 找不到 NaN(应用 includes)",
+      "real_world": "Array.prototype.indexOf 用严格相等(===)比较,而 NaN!==NaN,所以 indexOf(NaN) 永远返回 -1。includes 用 SameValueZero 能正确匹配 NaN。该差异是 ES2016 引入 includes 的直接动因,在做\"数组是否含某值\"的去重/校验逻辑里真实踩坑。",
+      "swebench": {
+        "instance_id": "evoimmune__realbugs-includes_nan",
+        "problem_statement": "[indexOf 找不到 NaN(应用 includes)] Array.prototype.indexOf 用严格相等(===)比较,而 NaN!==NaN,所以 indexOf(NaN) 永远返回 -1。includes 用 SameValueZero 能正确匹配 NaN。该差异是 ES2016 引入 includes 的直接动因,在做\"数组是否含某值\"的去重/校验逻辑里真实踩坑。\n修复 solution.cjs 使 FAIL_TO_PASS 测试通过,同时不破坏 PASS_TO_PASS 回归测试。",
+        "FAIL_TO_PASS": [
+          "test.cjs"
+        ],
+        "PASS_TO_PASS": [
+          "regress.cjs"
+        ],
+        "repo_hint": "minimal-repro (single-file CommonJS) · 对齐 SWE-bench FAIL/PASS_TO_PASS 契约"
+      },
+      "triage": {
+        "buggy": {
+          "failToPass": false,
+          "passToPass": true,
+          "expect": "FAIL_TO_PASS=false"
+        },
+        "fixed": {
+          "failToPass": true,
+          "passToPass": true,
+          "expect": "both=true"
+        },
+        "wrongPatch": {
+          "failToPass": true,
+          "passToPass": false,
+          "expect": "PASS_TO_PASS=false"
+        }
+      },
+      "verdict": "OK"
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "ok": 5,
+    "all_pass": true
+  }
+}

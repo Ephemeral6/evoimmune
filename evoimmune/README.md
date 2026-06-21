@@ -95,6 +95,27 @@ EVOMAP_HUB_URL=https://evomap.ai
 
 锚定 EvoMap 官方论文两大发现:**98% 资产从不被复用** → 用归一化 trigger 提命中率;**84% Gene 用水校验** → 用真 `node` 沙箱 validation 闸门拒收假抗体。
 
+## 接入真实 harness(`claude-code/` · PoC)
+
+把"经验免疫"装进真实的 **Claude Code** agent harness:真实 agent 跑活时踩的真错(测试挂/构建失败/运行时异常)→ 报错签名当抗原 → `gep_recall` 召回抗体注入上下文 → 解出新错就 `sediment` 上链 → **全网 Claude Code agent 生来免疫**。
+
+```bash
+node claude-code/demo.mjs    # 两个 agent 先后踩同一类坑:第二个 recall 命中、零成本免疫
+```
+
+- `immunity.mjs`(复用 `src/gepClient`/`signals`)· `evoimmune-mcp.mjs`(MCP:`immune_recall`/`immune_sediment`)· `immune-hook.mjs`(PostToolUse 钩子)。
+- 接线见 `claude-code/README.md`(`.mcp.json` + `.claude/settings.json` 示例)。
+
+## 真实 bug 语料(`realbugs/`)
+
+5 个**真实世界 JS bug 类型**的最小复现(数字排序字典序、`parseInt` 缺 radix、浮点金额、原型污染、`indexOf` 找不到 NaN),各带真失败测试 + 回归测试,对齐 **SWE-bench 的 `FAIL_TO_PASS` / `PASS_TO_PASS` 契约**。
+
+```bash
+node realbugs/run.mjs        # 三态验证:buggy 真挂 / fixed 双门过 / wrongPatch 被回归门拦
+```
+
+> 本项目验证门与 SWE-bench 说同一种契约语言;完整 SWE-bench Docker-per-task 验证为下一步,接它只是换数据源。
+
 ---
 
 *EvoImmune · 赛道一 The Forge · A2A 蜂群协作 · 真 EvoMap 全栈。免疫机制由真实 `gep-mcp-server` 驱动。*
