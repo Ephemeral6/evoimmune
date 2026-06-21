@@ -1,0 +1,30 @@
+{
+  "title": "Order",
+  "description": "订单字段定义。build/codegen.cjs 据此生成 generated/validators.cjs。",
+  "type": "object",
+  "required": ["customer", "amountYuan"],
+  "properties": {
+    "customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "客户名,非空字符串"
+    },
+    "amountYuan": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "下单金额,单位元(handler 负责转整数分入库)"
+    },
+    "currency": {
+      "type": "string",
+      "enum": ["CNY"],
+      "default": "CNY",
+      "description": "币种,目前只支持 CNY"
+    },
+    "note": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "可选备注"
+    }
+  },
+  "additionalProperties": false
+}

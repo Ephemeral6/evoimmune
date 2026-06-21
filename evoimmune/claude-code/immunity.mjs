@@ -24,10 +24,19 @@ export async function openImmuneGep(label = 'evoimmune-cc') {
   });
 }
 
-// 召回免疫:从 error 文本抽取归一化签名 → gep.recall → 命中最佳抗体(含 fix/hint/置信/相似)。
+// 经验级归一化:在 extractSignals 之上,再把"稳定短语 (可变细节)"里的括号细节剥掉,
+// 让同一条项目经验/约定在不同 handler、不同字段名上产生同一签名 → 跨任务可继承。
+// (extractSignals 已剥引号;这里再剥 " (" 之后的内容。无括号则原样返回,向后兼容。)
+function lessonSignals(error) {
+  const sig = extractSignals(error);
+  const phrase = String(sig[1]).split(' (')[0].trim();
+  return [sig[0], phrase || sig[1]];
+}
+
+// 召回免疫:从 error 文本抽取经验级签名 → gep.recall → 命中最佳抗体(含 fix/hint/置信/相似)。
 // 命中条件:相似度×置信度 ≥ 阈值 且 outcome 为 success(失败/被衰减的抗体不当免疫)。
 export async function recallImmunity({ error, gep }) {
-  const signals = extractSignals(error);
+  const signals = lessonSignals(error);
   const key = signalKey(signals);
   const r = await gep.recall(`evoimmune ${signals.join(' ')}`, signals);
 
@@ -64,7 +73,7 @@ export async function recallImmunity({ error, gep }) {
 // summary 用与现有 console 兼容的 JSON 形状({patchKind, familyId, hint, confidence}),
 // 额外带 fix 字段(承载真实修复),老消费者忽略它、新 recall 读它,向后兼容。
 export async function sedimentAntibody({ error, fix, hint = '', gep, confidence = 0.9 }) {
-  const signals = extractSignals(error);
+  const signals = lessonSignals(error);
   const key = signalKey(signals);
   const summary = JSON.stringify({
     patchKind: 'cc-immune',     // 标记来源:Claude Code 真实 harness 沉淀的抗体
