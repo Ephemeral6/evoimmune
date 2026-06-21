@@ -38,6 +38,11 @@ function lessonSignals(error) {
 export async function recallImmunity({ error, gep }) {
   const signals = lessonSignals(error);
   const key = signalKey(signals);
+  // 抽不到可用错误指纹(UnknownError 兜底桶)→ 直接不召回:
+  // 否则兜底桶里互不相干的抗体会因都落同一桶而跨指纹误命中(实测:金额查询拿到 codegen 修复)。
+  if (signals[0] === 'UnknownError') {
+    return { hit: false, signals, key, threshold: IMMUNE_THRESHOLD, reason: 'no_fingerprint' };
+  }
   const r = await gep.recall(`evoimmune ${signals.join(' ')}`, signals);
 
   const matches = (r.matches || [])
@@ -48,7 +53,9 @@ export async function recallImmunity({ error, gep }) {
       const conf = (payload && typeof payload.confidence === 'number') ? payload.confidence : (m.outcome.score || 0.9);
       return { sim: Number(m.similarity) || 0, conf, payload, score: (Number(m.similarity) || 0) * conf };
     })
-    .filter((m) => m.payload && m.payload.fix)  // 只认带「修复」的抗体
+    // 只认:带「修复」+「指纹一致」的抗体。指纹一致(payload.familyId === key)硬过滤掉
+    // gep 语义相似带来的跨指纹误命中——只继承「同一类错误」的抗体。
+    .filter((m) => m.payload && m.payload.fix && m.payload.familyId === key)
     .sort((a, b) => b.score - a.score);
 
   const best = matches[0];
@@ -75,6 +82,14 @@ export async function recallImmunity({ error, gep }) {
 export async function sedimentAntibody({ error, fix, hint = '', gep, confidence = 0.9 }) {
   const signals = lessonSignals(error);
   const key = signalKey(signals);
+  // 抽不到可用指纹(UnknownError)→ 拒绝沉淀:这种抗体既无法被精确召回,又会污染兜底桶造成误命中。
+  // 让调用方把「真实命令/测试 stderr 原文(含 Error: 行)」当 error 传入,而非转述。
+  if (signals[0] === 'UnknownError') {
+    return {
+      ok: false, signals, key,
+      warning: '抽不到错误指纹:请把真实的命令/测试 stderr 原文(含 "Error: <短语>" 那一行)作为 error 传入,而非转述;否则抗体无法被后续 agent 精确召回。',
+    };
+  }
   const summary = JSON.stringify({
     patchKind: 'cc-immune',     // 标记来源:Claude Code 真实 harness 沉淀的抗体
     familyId: key,              // 用归一化签名当族系 id → 同类错聚合
@@ -89,7 +104,7 @@ export async function sedimentAntibody({ error, fix, hint = '', gep, confidence 
     score: confidence,
     summary,
   });
-  return { signals, key };
+  return { ok: true, signals, key };
 }
 
 export { IMMUNE_THRESHOLD, IMMUNE_DIR };
