@@ -1,0 +1,88 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><title>真实证据</title><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root{
+  --bg:#e9dec4; --bg2:#e3d4b3; --ink:#2a2016; --dim:#6f5e42; --faint:#8a795a;
+  --brass:#a9760f; --gold:#c2901c; --blood:#8c2f1d; --sage:#586b32; --line:#bda878;
+}
+html,body{ width:794px; height:1123px; }
+body{
+  font-family:"Songti SC","STSong","Noto Serif CJK SC",Georgia,serif;
+  color:var(--ink);
+  background:
+    radial-gradient(120% 80% at 50% -10%, #f1e8d2 0%, var(--bg) 42%, var(--bg2) 100%);
+  position:relative; overflow:hidden;
+}
+body::after{ /* 做旧暗角 */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  box-shadow: inset 0 0 120px 30px rgba(74,52,28,.28), inset 0 0 30px 8px rgba(74,52,28,.18);
+  background:
+    repeating-linear-gradient(0deg, rgba(120,90,50,.025) 0 2px, transparent 2px 4px);
+}
+.frame{ position:absolute; inset:22px; border:2px solid var(--ink); }
+.frame::before{ content:""; position:absolute; inset:5px; border:1px solid var(--line); }
+.wrap{ position:absolute; inset:46px; display:flex; flex-direction:column; justify-content:space-between; }
+.wrap.top{ justify-content:flex-start; }
+.kicker{ font-family:"Special Elite","Courier New",monospace; letter-spacing:.32em; font-size:11px; color:var(--blood); text-transform:uppercase; }
+.eng{ font-family:"Special Elite","Courier New",monospace; letter-spacing:.18em; color:var(--faint); }
+.rule{ border:0; border-top:2px solid var(--ink); }
+.rule.thin{ border-top:1px solid var(--line); }
+.rule.dbl{ height:5px; border-top:2px solid var(--ink); border-bottom:1px solid var(--ink); }
+h1.title{ font-size:50px; font-weight:900; letter-spacing:2px; line-height:1.02; }
+.serif{ font-family:"Songti SC","STSong",Georgia,serif; }
+.tnum{ font-variant-numeric:tabular-nums; }
+.badge{ display:inline-block; border:1.5px solid var(--ink); border-radius:2px; padding:3px 9px; font-size:12px; letter-spacing:.06em; }
+.tag{ font-family:"Special Elite","Courier New",monospace; font-size:11px; color:var(--dim); border:1px solid var(--line); border-radius:2px; padding:2px 7px; letter-spacing:.05em; }
+.big{ font-size:60px; font-weight:900; line-height:1; color:var(--blood); }
+.big.gold{ color:var(--brass); } .big.sage{ color:var(--sage); }
+.cap{ font-size:13px; color:var(--dim); letter-spacing:.04em; }
+.mono{ font-family:"Special Elite","Courier New",monospace; }
+.card{ border:1.5px solid var(--ink); background:rgba(255,250,238,.42); padding:14px 16px; }
+.softline{ border-top:1px dashed var(--line); }
+.step{ width:30px;height:30px;border-radius:50%;border:2px solid var(--ink); display:flex;align-items:center;justify-content:center; font-weight:900; font-size:14px; background:rgba(255,250,238,.6); }
+.foot{ font-family:"Special Elite","Courier New",monospace; font-size:10px; letter-spacing:.18em; color:var(--faint); text-transform:uppercase; }
+.code{ font-family:"Special Elite","Courier New",monospace; font-size:12.5px; line-height:1.55; }
+.del{ color:var(--blood); } .ins{ color:var(--sage); }
+.seal{ position:absolute; right:60px; bottom:74px; width:118px;height:118px;border-radius:50%;
+  border:2px solid var(--blood); color:var(--blood); display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transform:rotate(-13deg); opacity:.92; text-align:center; }
+.seal .s1{ font-family:"Special Elite",monospace; font-size:10px; letter-spacing:.2em; }
+.seal .s2{ font-size:22px; font-weight:900; margin:3px 0; }
+.seal::before{ content:""; position:absolute; inset:7px; border:1px dashed var(--blood); border-radius:50%; }
+</style></head><body><div class="frame"></div><div class="wrap top">
+  <div class="kicker">真 实 证 据 · NOT A TOY · 全部真跑</div>
+  <hr class="rule dbl" style="margin:8px 0 16px;">
+  <h1 class="title" style="font-size:34px;">真 bug · 真模型 · 真上链</h1>
+  <div class="cap" style="margin:8px 0 14px;">由真实模型 <span class="mono">Gemini 3.1 Pro</span> 实解,补丁经双门验证,抗体真上 EvoMap 链。</div>
+
+  <div class="card" style="margin-bottom:11px;">
+    <div style="display:flex;justify-content:space-between;"><div class="serif" style="font-weight:900;font-size:16px;">📄 分页边界错位 (off-by-one)</div><span class="badge" style="font-size:10px;">655 token · 已治愈</span></div>
+    <div class="code" style="margin-top:8px;"><span class="del">− items.slice(start, start+size-1)</span> &nbsp;<span class="cap">少取最后一项</span><br><span class="ins">+ items.slice(start, start+size)</span></div>
+  </div>
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;"><div class="serif" style="font-weight:900;font-size:16px;">🧾 发票折扣 / 税额顺序错位</div><span class="badge" style="font-size:10px;">1,038 token · 已治愈</span></div>
+    <div class="code" style="margin-top:8px;"><span class="del">− tax = subtotal * taxRate</span> &nbsp;<span class="cap">在未扣折扣金额上计税</span><br><span class="ins">+ tax = (subtotal − discount) * taxRate</span></div>
+  </div>
+
+  <hr class="rule thin" style="margin:4px 0 14px;">
+  <div class="kicker" style="color:var(--ink);">真 上 链 · EVOMAP A2A HUB</div>
+  <div class="card mono" style="font-size:11.5px;line-height:1.7;margin-top:10px;">
+    <div>node&nbsp;&nbsp;: <span style="color:var(--ink);">node_f3d62089a8320468</span> &nbsp;(evoimmune,已认领)</div>
+    <div>bundle: <span style="color:var(--blood);">bundle_83fa523165b26af2</span> &nbsp;→ candidate / GDI 待晋升</div>
+    <div>gene&nbsp;&nbsp;: sha256:baf747c9…f928c</div>
+    <div>capsule: sha256:834054eb…f13b7</div>
+  </div>
+
+  <div style="display:flex;gap:12px;margin-top:14px;">
+    <div class="card" style="flex:1;">
+      <div class="kicker" style="color:var(--ink);">跨 模 型 继 承</div>
+      <div class="big gold" style="font-size:40px;margin-top:6px;">6</div>
+      <div class="cap">个真实模型互相继承抗体:Opus 4.7 / GPT 5.5 / Gemini 3.1 / DeepSeek V4 / GLM 5.1 / Kimi K2.6</div>
+    </div>
+    <div class="card" style="flex:1;border-color:var(--blood);">
+      <div class="kicker" style="color:var(--blood);">验 赏 官 · 抗体打假</div>
+      <div class="cap" style="margin-top:8px;line-height:1.5;">投毒 36 伪抗体:<br>盲信蜂群 → <b style="color:var(--blood);">36 假治愈</b><br>验证蜂群 → <b style="color:var(--sage);">拒收 36 / 真治愈 36</b></div>
+    </div>
+  </div>
+
+  <div class="seal"><div class="s1">VERIFIED</div><div class="s2">真跑</div><div class="s1">2026·杭州</div></div>
+</div><div class="foot" style="position:absolute;left:46px;bottom:30px;">EVOTAVERN · 进化酒馆 第三届 AGENT 黑客松 · THE FORGE / A2A</div><div class="foot" style="position:absolute;right:46px;bottom:30px;">第 4 / 4 版</div></body></html>

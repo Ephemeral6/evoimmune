@@ -1,0 +1,21 @@
+# ── secrets (NEVER commit) ──
+.env
+**/.env
+*.key
+~/.evomap
+
+# ── dependencies ──
+node_modules/
+**/node_modules/
+
+# ── runtime / generated ──
+evoimmune/.gepdata/
+**/.gepdata/
+*.log
+/tmp/
+
+# ── local agent / editor / os ──
+.claude/
+.DS_Store
+.vscode/
+.idea/

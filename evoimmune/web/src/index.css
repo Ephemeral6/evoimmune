@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Rye&family=Special+Elite&display=swap');
+@import "tailwindcss";
+
+/* ───────── 进化酒馆 · 西部世界 设计令牌 ───────── */
+@theme {
+  --color-bg: #15100b;        /* 暖褐黑 */
+  --color-panel: #201810;     /* 旧皮革 */
+  --color-line: #3c2f1d;      /* 木纹线 */
+  --color-ink: #ecdcbf;       /* 羊皮纸字 */
+  --color-dim: #9c8763;       /* 褪色棕 */
+  --color-red: #c4392f;       /* 牛血红(警报) */
+  --color-amber: #e0a93b;     /* 黄铜/赭石 */
+  --color-green: #88a259;     /* 鼠尾草绿(治愈) */
+  --color-cyan: #d8a23f;      /* 黄铜(取代霓虹青) */
+  --color-accent: #b5732a;    /* 马鞍棕 */
+  --color-parch: #e7d8b4;     /* 羊皮纸 */
+
+  --font-display: "Rye", "Noto Serif SC", serif;
+  --font-serif: "Noto Serif SC", "Songti SC", serif;
+  --font-mono: "Special Elite", "Courier New", monospace;
+}
+
+html { background-color: #15100b; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1100px 700px at 72% -8%, #2a1d10 0%, #15100b 58%);
+  color: #ecdcbf;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+}
+#root { min-height: 100vh; position: relative; }
+
+/* 纸纹颗粒 */
+body::after {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  opacity: 0.055; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* 暗角 */
+body::before {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+  background: radial-gradient(120% 120% at 50% 40%, transparent 55%, rgba(0,0,0,0.45) 100%);
+}
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: #4a3a22; border-radius: 2px; }
+
+/* ───────── 母题工具类 ───────── */
+.font-display { font-family: var(--font-display); }
+.font-tw { font-family: var(--font-mono); }
+
+/* 黄铜双线分隔(报头) */
+.rule-x { border: 0; border-top: 2px solid #6e5326; box-shadow: 0 3px 0 -1px #3c2d16; }
+
+/* 羊皮纸卡(通缉令/公告用) */
+.parchment {
+  background:
+    linear-gradient(135deg, #ece0c0 0%, #ddcaa0 100%);
+  color: #2a1d0e;
+  box-shadow: inset 0 0 38px rgba(120,80,30,0.25), 0 8px 22px rgba(0,0,0,0.45);
+}
+
+/* 木牌/皮面板:暖旧、上沿黄铜细线 */
+.board {
+  background: linear-gradient(180deg, #241b11 0%, #1c150d 100%);
+  border: 1px solid #3c2f1d;
+  border-top: 2px solid #6e5326;
+  border-radius: 3px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.4), inset 0 1px 0 rgba(180,140,70,0.12);
+}
+
+/* 蜡封印章 */
+.seal {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 9999px; border: 2px solid #7a241c;
+  color: #f0d9b0; background: radial-gradient(circle at 38% 32%, #b23a2c, #7a241c);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 2px 6px rgba(255,200,160,0.25);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+.tracking-western { letter-spacing: 0.12em; }
+
+/* ───────── 全局收皮(批量重塑现有组件) ───────── */
+/* 方正边角:西部海报是硬朗的,弃 AI 大圆角 */
+.rounded-2xl, .rounded-xl, .rounded-lg, .rounded-md { border-radius: 3px !important; }
+/* 现有 bg-panel 一律变皮面板 + 上沿黄铜 */
+.bg-panel {
+  background: linear-gradient(180deg, #241b11 0%, #1c150d 100%) !important;
+  border-top-color: #6e5326 !important;
+}
+/* 数字/单号用打字机体,更有电报味 */
+.tabular-nums { font-family: var(--font-mono); }

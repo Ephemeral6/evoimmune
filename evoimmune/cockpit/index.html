@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EvoImmune · 疫情驾驶舱</title>
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#111824; --line:#1e2a3a; --txt:#cdd9e5; --dim:#5b6b80;
+    --red:#ff4d5e; --amber:#ffb02e; --green:#2ee6a6; --cyan:#39d0ff; --accent:#7c5cff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 800px at 70% -10%,#13203a 0%,var(--bg) 55%);
+    color:var(--txt);font:14px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI",sans-serif;min-height:100vh}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 22px 60px}
+  header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+  h1{font-size:26px;margin:0;letter-spacing:.5px}
+  h1 .g{background:linear-gradient(90deg,var(--green),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--dim);font-size:13px}
+  .tag{margin-left:auto;font-size:11px;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .stat .k{color:var(--dim);font-size:12px}
+  .stat .v{font-size:28px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+  .stat .v small{font-size:14px;color:var(--dim);font-weight:500}
+  .banner{background:linear-gradient(90deg,rgba(124,92,255,.20),rgba(57,208,255,.10));border:1px solid var(--accent);border-radius:16px;padding:15px 18px;margin:16px 0}
+  .bn-big{font-size:19px;font-weight:700;margin-bottom:6px}
+  .bn-row{display:flex;gap:18px;flex-wrap:wrap;color:var(--dim);font-size:14px;align-items:center}
+  .bn-row b{font-size:18px}
+  .bn-hl{margin-left:auto;color:var(--cyan);font-weight:700;font-size:17px}
+  .realproof{background:rgba(46,230,166,.1);border:1px solid rgba(46,230,166,.4);border-radius:12px;padding:10px 14px;margin:0 0 16px;font-size:13px;color:var(--green)}
+  .cmtab{width:100%;border-collapse:collapse;font-size:12px}
+  .cmtab th,.cmtab td{border:1px solid var(--line);padding:7px 8px;text-align:center}
+  .cmtab th:first-child,.cmtab td:first-child{text-align:left;color:var(--txt);white-space:nowrap}
+  .cmtab thead th{color:var(--dim);font-weight:500}
+  .onchain{background:rgba(57,208,255,.08);border:1px solid rgba(57,208,255,.45);border-radius:12px;padding:10px 14px;margin:0 0 16px;font-size:13px;color:var(--cyan);line-height:1.7}
+  .onchain code{color:var(--txt);font-size:11px}
+  .grids{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .panel h2{margin:0 0 2px;font-size:15px;display:flex;align-items:center;gap:8px}
+  .panel .ph{color:var(--dim);font-size:12px;margin-bottom:12px}
+  .dot{width:9px;height:9px;border-radius:50%}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .col .ct{font-size:11px;color:var(--dim);margin-bottom:6px;height:28px;display:flex;align-items:center;gap:5px;line-height:1.15}
+  .cells{display:flex;flex-direction:column;gap:6px}
+  .cell{height:22px;border-radius:6px;background:#0c1320;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;transition:all .35s}
+  .cell.pending{opacity:.35}
+  .cell.infected{background:rgba(255,77,94,.18);border-color:var(--red);box-shadow:0 0 0 0 var(--red);animation:pulse .8s}
+  .cell.solve{background:rgba(255,176,46,.22);border-color:var(--amber);color:#3a2c08}
+  .cell.immunity{background:rgba(46,230,166,.20);border-color:var(--green);color:#063524}
+  @keyframes pulse{0%{box-shadow:0 0 0 6px rgba(255,77,94,.35)}100%{box-shadow:0 0 0 0 rgba(255,77,94,0)}}
+  .legend{display:flex;gap:16px;margin-top:14px;font-size:12px;color:var(--dim);flex-wrap:wrap}
+  .legend b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+  .controls{display:flex;align-items:center;gap:14px;margin:20px 0 8px}
+  button{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font-size:14px;cursor:pointer;font-weight:600}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+  input[type=range]{flex:1;accent-color:var(--accent)}
+  .chartwrap{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}
+  .chartwrap h2{margin:0 0 10px;font-size:15px}
+  .foot{color:var(--dim);font-size:12px;margin-top:18px;text-align:center}
+  .foot code{color:var(--cyan)}
+  .bignum{font-size:28px;font-weight:700;margin:6px 0 12px;font-variant-numeric:tabular-nums}
+  .bignum small{font-size:13px;color:var(--dim);font-weight:500}
+  .cells-row{display:flex;flex-wrap:wrap;gap:5px}
+  .cells-row .c{width:20px;height:20px;border-radius:5px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px}
+  .c.bad{background:rgba(255,77,94,.2);border-color:var(--red);color:#ff9aa3}
+  .c.good{background:rgba(46,230,166,.2);border-color:var(--green);color:#063524}
+  .vtimeline{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+  .vcell{min-width:96px;flex:1;border:1px solid var(--line);border-radius:10px;padding:9px 8px;text-align:center;background:#0c1320}
+  .vcell .lab{font-size:11px;color:var(--dim);margin-bottom:7px;min-height:30px;display:flex;align-items:center;justify-content:center;line-height:1.2}
+  .vcell .out{font-size:12px;font-weight:700}
+  .vcell.solve{border-color:var(--amber)} .vcell.solve .out{color:var(--amber)}
+  .vcell.escape{border-color:var(--red);box-shadow:0 0 0 1px rgba(255,77,94,.25)} .vcell.escape .out{color:var(--red)}
+  .vcell.immune{border-color:var(--green)} .vcell.immune .out{color:var(--green)}
+  .vcell .sim{font-size:10px;color:var(--dim);margin-top:5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>EvoImmune · <span class="g">疫情驾驶舱</span></h1>
+    <span class="sub">硅基生命的群体免疫系统 · The Forge / A2A 蜂群协作</span>
+    <span class="tag">powered by EvoMap gep-mcp-server</span>
+  </header>
+
+  <div class="banner" id="scale-banner"></div>
+
+  <div id="realproof" class="realproof" style="display:none"></div>
+
+  <div id="onchain" class="onchain" style="display:none"></div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">LLM 解题 · 朴素 OFF</div><div class="v" id="s-naive" style="color:var(--amber)">0</div></div>
+    <div class="stat"><div class="k">LLM 解题 · 免疫 ON</div><div class="v" id="s-immune" style="color:var(--green)">0</div></div>
+    <div class="stat"><div class="k">群体免疫继承</div><div class="v" id="s-inherit" style="color:var(--cyan)">0 <small>次</small></div></div>
+    <div class="stat"><div class="k">省下 token (估)</div><div class="v" id="s-tok">0</div></div>
+  </div>
+
+  <div class="grids">
+    <div class="panel">
+      <h2><span class="dot" style="background:var(--amber)"></span>朴素蜂群 <span style="color:var(--dim);font-weight:400">免疫 OFF</span></h2>
+      <div class="ph">每个任务都靠模型从零解 —— 同一个坑反复踩</div>
+      <div class="cols" id="grid-naive"></div>
+    </div>
+    <div class="panel">
+      <h2><span class="dot" style="background:var(--green)"></span>免疫蜂群 <span style="color:var(--dim);font-weight:400">免疫 ON · EvoMap</span></h2>
+      <div class="ph">零号病人沉淀抗体 → 全群 recall 继承 → 生来免疫</div>
+      <div class="cols" id="grid-immune"></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><b style="background:var(--red)"></b>感染(踩坑)</span>
+    <span><b style="background:var(--amber)"></b>模型解题(烧 token)</span>
+    <span><b style="background:var(--green)"></b>免疫继承(零成本)</span>
+  </div>
+
+  <div class="controls">
+    <button id="play">▶ 播放疫情</button>
+    <button class="ghost" id="reset">⟲ 重置</button>
+    <input type="range" id="scrub" min="0" max="0" value="0" />
+    <span class="sub" id="step">0 / 0</span>
+  </div>
+
+  <div class="chartwrap">
+    <h2>累计 LLM 解题次数 · 朴素 vs 免疫</h2>
+    <svg id="chart" viewBox="0 0 1120 240" width="100%" height="240" preserveAspectRatio="none"></svg>
+  </div>
+
+  <div class="chartwrap" style="margin-top:14px">
+    <h2>🛡 免疫公信层 · 假抗体拒收 <span style="color:var(--dim);font-weight:400;font-size:12px">— 注册中心被伪抗体投毒(自报 0.99,实则不修)</span></h2>
+    <div class="grids" style="margin-top:6px">
+      <div class="panel" style="border-color:rgba(255,77,94,.4)">
+        <h2><span class="dot" style="background:var(--red)"></span>盲信蜂群 <span style="color:var(--dim);font-weight:400">信任自报分</span></h2>
+        <div class="ph">挑自报分最高的抗体直接用 → 被伪抗体污染</div>
+        <div class="bignum" id="t-blind" style="color:var(--red)">–</div>
+        <div class="cells-row" id="t-blind-cells"></div>
+      </div>
+      <div class="panel" style="border-color:rgba(46,230,166,.4)">
+        <h2><span class="dot" style="background:var(--green)"></span>EvoImmune 验证蜂群 <span style="color:var(--dim);font-weight:400">Validator 复跑校验</span></h2>
+        <div class="ph">逐个候选真跑 <code style="color:var(--cyan)">node test.cjs</code>,失败当场拒收</div>
+        <div class="bignum" id="t-valid" style="color:var(--green)">–</div>
+        <div class="cells-row" id="t-valid-cells"></div>
+      </div>
+    </div>
+    <div class="sub" style="margin-top:10px">直击论文发现:84% 的 Gene 用 <code style="color:var(--cyan)">console.log()</code> 等水校验绕过质量闸门 —— EvoImmune 用真 validation 把它们挡在门外。</div>
+  </div>
+
+  <div class="chartwrap" style="margin-top:14px">
+    <h2>🧪 变异攻防 · 交叉免疫 vs 免疫逃逸 <span style="color:var(--dim);font-weight:400;font-size:12px">— 抗体 trigger 模糊匹配的泛化边界</span></h2>
+    <div class="vtimeline" id="v-timeline"></div>
+    <div class="sub">野生株学会抗体 → 交叉株(换写法、同症状)被老抗体<b style="color:var(--green)">交叉免疫</b> → 逃逸株(变异 <code style="color:var(--cyan)">.add</code>,签名改变)recall 相似度 <b style="color:var(--red)">0.33 &lt; 0.6 免疫逃逸</b> → 造新抗体后<b style="color:var(--green)">加强针免疫</b>。全程只烧 2 次 LLM。</div>
+  </div>
+
+  <div class="chartwrap" style="margin-top:14px">
+    <h2>💉 疫苗接种 · 新一代生来免疫 <span style="color:var(--dim);font-weight:400;font-size:12px">— "让其他节点生来就具备群体免疫"</span></h2>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:6px 0 10px">
+      <div class="stat"><div class="k">第一代 · 学习代价</div><div class="v" id="va-boot" style="color:var(--amber)">–</div></div>
+      <div class="stat" style="border-color:rgba(46,230,166,.4)"><div class="k">第二代 · 已接种(共享注册中心)</div><div class="v" id="va-vacc" style="color:var(--green)">–</div></div>
+      <div class="stat"><div class="k">第二代 · 未接种对照</div><div class="v" id="va-ctrl" style="color:var(--amber)">–</div></div>
+    </div>
+    <div class="cells-row" id="va-cells"></div>
+    <div class="sub" style="margin-top:10px">第一代付一次代价学会全部抗体;第二代接入同一 EvoMap 注册中心,面对全新变体 <b style="color:var(--green)">0 次 LLM、100% 生来免疫</b> —— 一代学会,代代继承。</div>
+  </div>
+
+  <div class="chartwrap" id="cross-wrap" style="display:none;margin-top:14px">
+    <h2>🧬 跨模型免疫 · 经验跨模型迁移 <span style="color:var(--dim);font-weight:400;font-size:12px">— 抗体不绑定出身模型(EvoMap Cross-Model Evolution)</span></h2>
+    <div id="cross-origins" class="sub" style="margin:6px 0 12px"></div>
+    <div id="cross-matrix" style="overflow-x:auto"></div>
+  </div>
+
+  <div class="foot">
+    免疫机制由真实 <code>gep_recall</code> / <code>gep_record_outcome</code> 驱动 · 抗体 = EvoMap Capsule(trigger + validation=<code>node test.cjs</code>)
+  </div>
+</div>
+
+<script src="data/data.js"></script>
+<script>
+const D = window.__EVOIMMUNE__;
+const FAM = D.families;
+
+// ✅ 真实模型实证徽章(若 realproof.json 存在)
+fetch('data/realproof.json').then((r) => (r.ok ? r.json() : null)).then((rp) => {
+  if (!rp) return;
+  const el = document.getElementById('realproof');
+  el.style.display = 'block';
+  el.innerHTML = `✅ <b>真实模型实证</b>(${rp.verified_at}):经 EvoMap 网关用 <b>${rp.model}</b> 跑通 —— ${rp.tasks} 任务中真模型解 <b>${rp.real_solves}</b> 个零号病人(真 token=<b>${rp.real_tokens}</b>),<b>${rp.immune_inherited}</b> 个免疫继承零模型消耗。机制非模拟。`;
+}).catch(() => {});
+const PHASES = ['cured','failed','healthy'];
+// 按任务顺序还原结果序列(buildTasks: 外层变体 i,内层家族 → step k => 家族列=k%F, 变体行=floor(k/F))
+function ordered(run){ return run.events.filter(e=>PHASES.includes(e.phase)); }
+const oN = ordered(D.naive), oI = ordered(D.immune);
+const STEPS = Math.max(oN.length, oI.length);
+const F = FAM.length, ROWS = Math.ceil(STEPS / F);
+const EST = 1800;
+
+// 建网格
+function buildGrid(elId){
+  const root = document.getElementById(elId); root.innerHTML='';
+  const cells = [];
+  for(let c=0;c<F;c++){
+    const col = document.createElement('div'); col.className='col';
+    const ct = document.createElement('div'); ct.className='ct';
+    ct.innerHTML = `<span>${FAM[c].emoji}</span><span>${FAM[c].name}</span>`;
+    col.appendChild(ct);
+    const cellsWrap = document.createElement('div'); cellsWrap.className='cells';
+    for(let r=0;r<ROWS;r++){
+      const cell=document.createElement('div'); cell.className='cell pending';
+      const k=r*F+c; cells[k]=cell; cellsWrap.appendChild(cell);
+    }
+    col.appendChild(cellsWrap); root.appendChild(col);
+  }
+  return cells;
+}
+let cellsN = buildGrid('grid-naive');
+let cellsI = buildGrid('grid-immune');
+
+function colorFor(ev){ return ev && ev.via==='immunity' ? 'immunity' : (ev && ev.phase==='failed' ? 'infected' : 'solve'); }
+
+function render(step){
+  let nLLM=0,iLLM=0,inherit=0;
+  const apply=(cells,ord,countSolve)=>{
+    for(let k=0;k<cells.length;k++){
+      const cell=cells[k], ev=ord[k];
+      if(!ev){ cell.className='cell pending'; continue; }
+      if(k<step){ const cls=colorFor(ev); cell.className='cell '+cls; cell.textContent= cls==='immunity'?'✓':'$';
+        if(cls==='solve') countSolve(); if(cls==='immunity') inherit++; }
+      else if(k===step){ cell.className='cell infected'; cell.textContent=''; }
+      else { cell.className='cell pending'; cell.textContent=''; }
+    }
+  };
+  apply(cellsN,oN,()=>nLLM++);
+  apply(cellsI,oI,()=>iLLM++);
+  // inherit 被两边都加了(naive 无 immunity 所以只来自 immune),这里 inherit 实际只统计 immune
+  document.getElementById('s-naive').textContent=nLLM;
+  document.getElementById('s-immune').textContent=iLLM;
+  document.getElementById('s-inherit').innerHTML=inherit+' <small>次</small>';
+  document.getElementById('s-tok').textContent=((nLLM-iLLM)*EST).toLocaleString();
+  document.getElementById('step').textContent=`${step} / ${STEPS}`;
+  document.getElementById('scrub').value=step;
+  drawChart(step);
+}
+
+// 折线图:累计 LLM 解题
+function cum(ord){ const a=[0]; let s=0; for(let k=0;k<ord.length;k++){ const cls=colorFor(ord[k]); if(cls==='solve') s++; a.push(s);} return a; }
+const cumN=cum(oN), cumI=cum(oI);
+const W=1120,H=240,PADL=44,PADB=26,PADT=14,PADR=12;
+const maxY=Math.max(cumN[cumN.length-1],cumI[cumI.length-1],1);
+function pt(i,v){ const x=PADL+(W-PADL-PADR)*(i/STEPS); const y=PADT+(H-PADT-PADB)*(1-v/maxY); return [x,y]; }
+function path(arr,upTo){ let d=''; for(let i=0;i<=Math.min(upTo,arr.length-1);i++){ const [x,y]=pt(i,arr[i]); d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' '; } return d; }
+function drawChart(step){
+  const svg=document.getElementById('chart');
+  let g='';
+  // 网格线
+  for(let v=0;v<=maxY;v+=Math.ceil(maxY/4)){ const [,y]=pt(0,v);
+    g+=`<line x1="${PADL}" y1="${y}" x2="${W-PADR}" y2="${y}" stroke="#1e2a3a"/>`;
+    g+=`<text x="${PADL-8}" y="${y+4}" fill="#5b6b80" font-size="11" text-anchor="end">${v}</text>`; }
+  g+=`<path d="${path(cumN,step)}" fill="none" stroke="#ffb02e" stroke-width="2.5"/>`;
+  g+=`<path d="${path(cumI,step)}" fill="none" stroke="#2ee6a6" stroke-width="2.5"/>`;
+  // 端点标注
+  const eN=pt(Math.min(step,STEPS),cumN[Math.min(step,cumN.length-1)]);
+  const eI=pt(Math.min(step,STEPS),cumI[Math.min(step,cumI.length-1)]);
+  g+=`<circle cx="${eN[0]}" cy="${eN[1]}" r="3.5" fill="#ffb02e"/>`;
+  g+=`<circle cx="${eI[0]}" cy="${eI[1]}" r="3.5" fill="#2ee6a6"/>`;
+  g+=`<text x="${W-PADR}" y="${PADT+12}" fill="#ffb02e" font-size="12" text-anchor="end">朴素 OFF</text>`;
+  g+=`<text x="${W-PADR}" y="${PADT+30}" fill="#2ee6a6" font-size="12" text-anchor="end">免疫 ON</text>`;
+  svg.innerHTML=g;
+}
+
+// 播放控制
+let timer=null, step=0;
+function setStep(s){ step=Math.max(0,Math.min(STEPS,s)); render(step); }
+document.getElementById('scrub').max=STEPS;
+document.getElementById('play').onclick=function(){
+  if(timer){ clearInterval(timer); timer=null; this.textContent='▶ 播放疫情'; return; }
+  this.textContent='⏸ 暂停';
+  if(step>=STEPS) setStep(0);
+  timer=setInterval(()=>{ if(step>=STEPS){ clearInterval(timer); timer=null; document.getElementById('play').textContent='▶ 播放疫情'; return;} setStep(step+1); },260);
+};
+document.getElementById('reset').onclick=()=>{ if(timer){clearInterval(timer);timer=null;document.getElementById('play').textContent='▶ 播放疫情';} setStep(0); };
+document.getElementById('scrub').oninput=(e)=>{ if(timer){clearInterval(timer);timer=null;document.getElementById('play').textContent='▶ 播放疫情';} setStep(+e.target.value); };
+
+// ⑦ 免疫公信层渲染
+const T = D.trust;
+if (T) {
+  const b = T.blind, v = T.validated;
+  document.getElementById('t-blind').innerHTML = `${b.metrics.false_cures}/${b.metrics.tasks} <small>假治愈(被伪抗体污染)</small>`;
+  document.getElementById('t-valid').innerHTML = `${v.metrics.rejected} <small>伪抗体被拦截 · ${v.metrics.genuine} 真治愈 · ${v.metrics.false_cures} 误判</small>`;
+  const bc = document.getElementById('t-blind-cells');
+  b.events.filter((e) => e.phase === 'false_cure' || e.phase === 'cured').forEach((e) => {
+    const c = document.createElement('div'); c.className = 'c ' + (e.phase === 'false_cure' ? 'bad' : 'good');
+    c.textContent = e.phase === 'false_cure' ? '✗' : '✓'; bc.appendChild(c);
+  });
+  const vc = document.getElementById('t-valid-cells');
+  v.events.filter((e) => e.phase === 'accepted' || e.phase === 'unsolved').forEach((e) => {
+    const c = document.createElement('div'); c.className = 'c ' + (e.phase === 'accepted' ? 'good' : 'bad');
+    c.textContent = e.phase === 'accepted' ? '✓' : '?'; vc.appendChild(c);
+  });
+}
+
+// ⑤ 变异攻防渲染
+const V = D.variant;
+if (V) {
+  const root = document.getElementById('v-timeline');
+  const MAP = {
+    wild_solved: { cls: 'solve', txt: '学会抗体' },
+    immune: { cls: 'immune', txt: '免疫' },
+    cross_immune: { cls: 'immune', txt: '交叉免疫' },
+    escape_solved: { cls: 'escape', txt: '免疫逃逸→新抗体' },
+    booster_immune: { cls: 'immune', txt: '加强针免疫' },
+  };
+  V.events.forEach((e) => {
+    const m = MAP[e.outcome] || { cls: '', txt: e.outcome };
+    const d = document.createElement('div');
+    d.className = 'vcell ' + m.cls;
+    const sim = e.outcome === 'escape_solved'
+      ? `<div class="sim">recall sim ${e.bestSim} &lt; 0.6</div>`
+      : (e.bestSim ? `<div class="sim">sim ${e.bestSim}</div>` : '');
+    d.innerHTML = `<div class="lab">${e.label}</div><div class="out">${m.txt}</div>${sim}`;
+    root.appendChild(d);
+  });
+}
+
+// ⚔️ 规模化战报横幅
+const SC = D.scale;
+if (SC) {
+  document.getElementById('scale-banner').innerHTML =
+    `<div class="bn-big">⚔️ ${SC.total} 任务 · ${SC.nodes} 节点蜂群 · ${SC.families} 病原家族</div>` +
+    `<div class="bn-row"><span>免疫前 <b style="color:var(--amber)">${SC.naive_solves}</b> 次模型解题</span>` +
+    `<span>→ EvoMap 免疫后 <b style="color:var(--green)">${SC.immune_solves}</b> 次</span>` +
+    `<span class="bn-hl">省 ${SC.saved_pct}% · ≈${SC.saved_tokens.toLocaleString()} tokens</span></div>`;
+}
+
+// 🔗 真 Hub 上链凭证(若 publish.json 存在)
+fetch('data/publish.json').then((r) => (r.ok ? r.json() : null)).then((pb) => {
+  if (!pb || !pb.ok) return;
+  const el = document.getElementById('onchain');
+  el.style.display = 'block';
+  el.innerHTML = `🔗 <b>已上链 EvoMap Hub</b>(${pb.published_at}):节点 <b>${pb.node_name}</b> 经 A2A 发布抗体 <b>Gene + Capsule + EvolutionEvent</b> → <code>${pb.bundle_id}</code> · 状态 <b>${pb.status}</b>(候选池待 GDI 晋升)。` +
+    `<br>Gene <code>${pb.gene_asset_id.slice(0, 30)}…</code> · Capsule <code>${pb.capsule_asset_id.slice(0, 30)}…</code>`;
+}).catch(() => {});
+
+// 🧬 跨模型免疫矩阵(若 crossmodel.json 存在)
+fetch('data/crossmodel.json').then((r) => (r.ok ? r.json() : null)).then((cm) => {
+  if (!cm) return;
+  document.getElementById('cross-wrap').style.display = 'block';
+  document.getElementById('cross-origins').innerHTML = cm.origins.map((o) =>
+    `<span style="margin-right:16px">${o.emoji} <b style="color:var(--txt)">${o.model}</b> 造出「${o.family}」抗体(真 token=${o.tokens.toLocaleString()})</span>`).join('');
+  const inh = cm.inheritors;
+  let html = '<table class="cmtab"><thead><tr><th>抗体来源 ＼ 继承节点模型</th>' + inh.map((m) => `<th>${m}</th>`).join('') + '</tr></thead><tbody>';
+  for (const o of cm.origins) {
+    const set = new Set(cm.matrix[o.model] || []);
+    html += `<tr><td>${o.emoji} ${o.model}</td>` + inh.map((m) => `<td>${set.has(m) ? '<span style="color:var(--green)">✓</span>' : '·'}</td>`).join('') + '</tr>';
+  }
+  html += '</tbody></table>';
+  document.getElementById('cross-matrix').innerHTML = html;
+}).catch(() => {});
+
+// 💉 疫苗接种渲染
+const VA = D.vaccinate;
+if (VA) {
+  document.getElementById('va-boot').innerHTML = `${VA.bootstrap.solved_by_llm} <small>次 LLM</small>`;
+  document.getElementById('va-vacc').innerHTML = `${VA.vaccinated.solved_by_llm} <small>次 LLM · ${VA.vaccinated.immune_inherited} 生来免疫</small>`;
+  document.getElementById('va-ctrl').innerHTML = `${VA.control.solved_by_llm} <small>次 LLM</small>`;
+  const cr = document.getElementById('va-cells');
+  (VA.vaccinated.events || []).filter((e) => e.phase === 'cured').forEach(() => {
+    const c = document.createElement('div'); c.className = 'c good'; c.textContent = '✓'; cr.appendChild(c);
+  });
+}
+
+setStep(STEPS); // 默认展示终态
+</script>
+</body>
+</html>

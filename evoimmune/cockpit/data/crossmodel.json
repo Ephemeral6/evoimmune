@@ -1,0 +1,60 @@
+{
+  "origins": [
+    {
+      "family": "幽灵方法 .append()",
+      "emoji": "🧬",
+      "model": "Claude Opus 4.7",
+      "tokens": 45311,
+      "ok": true
+    },
+    {
+      "family": "把属性当函数 .length()",
+      "emoji": "📏",
+      "model": "GPT 5.5",
+      "tokens": 191,
+      "ok": true
+    },
+    {
+      "family": "大小写写错 .tostring()",
+      "emoji": "🔤",
+      "model": "Gemini 3.1 Pro",
+      "tokens": 268,
+      "ok": true
+    }
+  ],
+  "inheritors": [
+    "Claude Opus 4.7",
+    "GPT 5.5",
+    "Gemini 3.1 Pro",
+    "DeepSeek V4 Flash",
+    "GLM 5.1",
+    "Kimi K2.6"
+  ],
+  "matrix": {
+    "Claude Opus 4.7": [
+      "Claude Opus 4.7",
+      "GPT 5.5",
+      "Gemini 3.1 Pro",
+      "DeepSeek V4 Flash",
+      "GLM 5.1",
+      "Kimi K2.6"
+    ],
+    "GPT 5.5": [
+      "Claude Opus 4.7",
+      "GPT 5.5",
+      "Gemini 3.1 Pro",
+      "DeepSeek V4 Flash",
+      "GLM 5.1",
+      "Kimi K2.6"
+    ],
+    "Gemini 3.1 Pro": [
+      "Claude Opus 4.7",
+      "GPT 5.5",
+      "Gemini 3.1 Pro",
+      "DeepSeek V4 Flash",
+      "GLM 5.1",
+      "Kimi K2.6"
+    ]
+  },
+  "verified_at": "2026-06-19"
+}

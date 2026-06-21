@@ -1,0 +1,32 @@
+{
+  "model": "evomap-gemini-3.1-pro-preview",
+  "verified_at": "2026-06-20",
+  "bugs": [
+    {
+      "id": "realbug_pagination",
+      "name": "分页边界错位 (off-by-one)",
+      "emoji": "📄",
+      "buggy_line": "items.slice(start, start+size-1)  // 少取最后一项",
+      "fix_line": "items.slice(start, start+size)",
+      "diagnostic": "Error / pagination boundary mismatch",
+      "model_solved": true,
+      "tokens": 655,
+      "immune_ok": true,
+      "before": "function page0(items, page, size){\n  const start=(page-1)*size;\n  return items.slice(start, start+size-1);\n}\nmodule.exports={page0};",
+      "after": "function page0(items, page, size){\n  const start=(page-1)*size;\n  return items.slice(start, start+size);\n}\nmodule.exports={page0};"
+    },
+    {
+      "id": "realbug_invoice",
+      "name": "发票折扣/税顺序错位",
+      "emoji": "🧾",
+      "buggy_line": "tax = subtotal * taxRate  // 在未扣折扣的金额上计税",
+      "fix_line": "tax = (subtotal - discount) * taxRate",
+      "diagnostic": "Error / invoice total mismatch",
+      "model_solved": true,
+      "tokens": 1038,
+      "immune_ok": true,
+      "before": "function invoice0(subtotal, discount, taxRate){\n  const tax=subtotal*taxRate;\n  return Math.round((subtotal-discount+tax)*100)/100;\n}\nmodule.exports={invoice0};",
+      "after": "function invoice0(subtotal, discount, taxRate){\n  const tax=(subtotal-discount)*taxRate;\n  return Math.round((subtotal-discount+tax)*100)/100;\n}\nmodule.exports={invoice0};"
+    }
+  ]
+}

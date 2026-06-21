@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+  html,body{margin:0;padding:0;width:100vw;height:100vh;background:#e9dec4;overflow:hidden;}
+  img{width:100vw;height:100vh;object-fit:contain;display:block;}
+</style></head>
+<body><img id="p" src="poster1.png" alt=""></body>
+<script>
+  const n = new URLSearchParams(location.search).get('n') || '1';
+  document.getElementById('p').src = 'poster' + n + '.png';
+</script></html>

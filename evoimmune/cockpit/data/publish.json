@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "node_id": "node_f3d62089a8320468",
+  "node_name": "evoimmune",
+  "hub": "https://evomap.ai",
+  "bundle_id": "bundle_83fa523165b26af2",
+  "status": "candidate",
+  "decision_note": "首发 quarantine/safety_candidate(进候选池待 GDI 晋升);重发被 Hub 去重为 already_published,确认已在链上",
+  "gene_asset_id": "sha256:baf747c98679042da083575c4b510aa5c111a0c1e93efd9f282a4e28044f928c",
+  "capsule_asset_id": "sha256:834054eb1c4c8dc3401ff8c10fc89487b2b0bada28c9e28dc816321537ff13b7",
+  "event_asset_id": "sha256:d83700ad2bfcd019d3360b3d686cdb8788b9748d0b1c112564317f4a0c6949bc",
+  "published_at": "2026-06-19"
+}

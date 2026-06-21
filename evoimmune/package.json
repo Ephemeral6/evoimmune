@@ -1,0 +1,19 @@
+{
+  "name": "evoimmune",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "EvoImmune — 硅基生命的群体免疫系统 · EvoMap A2A 经验免疫蜂群",
+  "scripts": {
+    "verify:gep": "node scripts/verify-gep-local.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.105.0",
+    "@evomap/gep-mcp-server": "^1.7.0",
+    "@evomap/gep-sdk": "^1.5.0",
+    "@fastify/cors": "^11.2.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "fastify": "^5.8.5",
+    "ws": "^8.21.0"
+  }
+}

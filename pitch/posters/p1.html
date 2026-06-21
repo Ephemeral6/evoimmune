@@ -1,0 +1,109 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><title>封面</title><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root{
+  --bg:#e9dec4; --bg2:#e3d4b3; --ink:#2a2016; --dim:#6f5e42; --faint:#8a795a;
+  --brass:#a9760f; --gold:#c2901c; --blood:#8c2f1d; --sage:#586b32; --line:#bda878;
+}
+html,body{ width:794px; height:1123px; }
+body{
+  font-family:"Songti SC","STSong","Noto Serif CJK SC",Georgia,serif;
+  color:var(--ink);
+  background:
+    radial-gradient(120% 80% at 50% -10%, #f1e8d2 0%, var(--bg) 42%, var(--bg2) 100%);
+  position:relative; overflow:hidden;
+}
+body::after{ /* 做旧暗角 */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  box-shadow: inset 0 0 120px 30px rgba(74,52,28,.28), inset 0 0 30px 8px rgba(74,52,28,.18);
+  background:
+    repeating-linear-gradient(0deg, rgba(120,90,50,.025) 0 2px, transparent 2px 4px);
+}
+.frame{ position:absolute; inset:22px; border:2px solid var(--ink); }
+.frame::before{ content:""; position:absolute; inset:5px; border:1px solid var(--line); }
+.wrap{ position:absolute; inset:46px; display:flex; flex-direction:column; justify-content:space-between; }
+.wrap.top{ justify-content:flex-start; }
+.kicker{ font-family:"Special Elite","Courier New",monospace; letter-spacing:.32em; font-size:11px; color:var(--blood); text-transform:uppercase; }
+.eng{ font-family:"Special Elite","Courier New",monospace; letter-spacing:.18em; color:var(--faint); }
+.rule{ border:0; border-top:2px solid var(--ink); }
+.rule.thin{ border-top:1px solid var(--line); }
+.rule.dbl{ height:5px; border-top:2px solid var(--ink); border-bottom:1px solid var(--ink); }
+h1.title{ font-size:50px; font-weight:900; letter-spacing:2px; line-height:1.02; }
+.serif{ font-family:"Songti SC","STSong",Georgia,serif; }
+.tnum{ font-variant-numeric:tabular-nums; }
+.badge{ display:inline-block; border:1.5px solid var(--ink); border-radius:2px; padding:3px 9px; font-size:12px; letter-spacing:.06em; }
+.tag{ font-family:"Special Elite","Courier New",monospace; font-size:11px; color:var(--dim); border:1px solid var(--line); border-radius:2px; padding:2px 7px; letter-spacing:.05em; }
+.big{ font-size:60px; font-weight:900; line-height:1; color:var(--blood); }
+.big.gold{ color:var(--brass); } .big.sage{ color:var(--sage); }
+.cap{ font-size:13px; color:var(--dim); letter-spacing:.04em; }
+.mono{ font-family:"Special Elite","Courier New",monospace; }
+.card{ border:1.5px solid var(--ink); background:rgba(255,250,238,.42); padding:14px 16px; }
+.softline{ border-top:1px dashed var(--line); }
+.step{ width:30px;height:30px;border-radius:50%;border:2px solid var(--ink); display:flex;align-items:center;justify-content:center; font-weight:900; font-size:14px; background:rgba(255,250,238,.6); }
+.foot{ font-family:"Special Elite","Courier New",monospace; font-size:10px; letter-spacing:.18em; color:var(--faint); text-transform:uppercase; }
+.code{ font-family:"Special Elite","Courier New",monospace; font-size:12.5px; line-height:1.55; }
+.del{ color:var(--blood); } .ins{ color:var(--sage); }
+.seal{ position:absolute; right:60px; bottom:74px; width:118px;height:118px;border-radius:50%;
+  border:2px solid var(--blood); color:var(--blood); display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transform:rotate(-13deg); opacity:.92; text-align:center; }
+.seal .s1{ font-family:"Special Elite",monospace; font-size:10px; letter-spacing:.2em; }
+.seal .s2{ font-size:22px; font-weight:900; margin:3px 0; }
+.seal::before{ content:""; position:absolute; inset:7px; border:1px dashed var(--blood); border-radius:50%; }
+</style></head><body><div class="frame"></div><div class="wrap ">
+  <div class="kicker">FRONTIER IMMUNITY GAZETTE · 硅基物种群体免疫</div>
+  <hr class="rule dbl" style="margin:8px 0 14px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+    <h1 class="title">EvoImmune<br><span style="font-size:38px;color:var(--blood);">经验免疫蜂群</span></h1>
+    <div style="text-align:right;">
+      <div class="badge">A2A 蜂群协作</div><br>
+      <div class="eng" style="font-size:11px;margin-top:8px;">EST. 2026 · 杭州</div>
+    </div>
+  </div>
+  <div class="serif" style="font-size:21px;margin:16px 0 4px;line-height:1.45;">
+    一个 <b>agent</b> 踩过的坑,变成全网 <b>agent</b> 生来就免疫的「抗体」。
+  </div>
+  <div class="cap" style="margin-bottom:14px;">一处治愈,全网免疫 —— 把单个 agent 的失败经验,沉淀成可被百万 agent 继承的免疫记忆。</div>
+  <hr class="rule thin" style="margin:4px 0 16px;">
+
+  <div class="kicker" style="color:var(--ink);">免 疫 回 路 · THE LOOP</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin:14px 2px 18px;">
+    <div style="text-align:center;width:140px;">
+        <div class="step" style="margin:0 auto 8px;">1</div>
+        <div class="serif" style="font-size:17px;font-weight:900;">感染</div>
+        <div class="cap" style="font-size:11px;margin-top:3px;line-height:1.3;">命中 bug<br>报错=抗原</div>
+      </div><div class="serif" style="font-size:26px;color:var(--brass);">→</div><div style="text-align:center;width:140px;">
+        <div class="step" style="margin:0 auto 8px;">2</div>
+        <div class="serif" style="font-size:17px;font-weight:900;">解题</div>
+        <div class="cap" style="font-size:11px;margin-top:3px;line-height:1.3;">大模型解<br>+ 验证通过</div>
+      </div><div class="serif" style="font-size:26px;color:var(--brass);">→</div><div style="text-align:center;width:140px;">
+        <div class="step" style="margin:0 auto 8px;">3</div>
+        <div class="serif" style="font-size:17px;font-weight:900;">沉淀抗体</div>
+        <div class="cap" style="font-size:11px;margin-top:3px;line-height:1.3;">打包成 EvoMap<br>Capsule 上链</div>
+      </div><div class="serif" style="font-size:26px;color:var(--brass);">→</div><div style="text-align:center;width:140px;">
+        <div class="step" style="margin:0 auto 8px;">4</div>
+        <div class="serif" style="font-size:17px;font-weight:900;">群体免疫</div>
+        <div class="cap" style="font-size:11px;margin-top:3px;line-height:1.3;">他人 recall<br>零 token 痊愈</div>
+      </div>
+  </div>
+  <hr class="rule thin" style="margin:2px 0 18px;">
+
+  <div class="kicker" style="color:var(--ink);">战 报 · 同一批任务 朴素蜂群 vs 免疫蜂群</div>
+  <div style="display:flex;gap:14px;margin-top:14px;">
+    <div class="card" style="flex:1;text-align:center;">
+      <div class="big">−87%</div>
+      <div class="cap" style="margin-top:6px;">模型解题次数<br><span class="mono tnum">48 → 6</span> 次</div>
+    </div>
+    <div class="card" style="flex:1;text-align:center;">
+      <div class="big sage">174</div>
+      <div class="cap" style="margin-top:6px;">次「生来免疫」<br>零模型调用继承</div>
+    </div>
+    <div class="card" style="flex:1;text-align:center;">
+      <div class="big gold tnum">313,200</div>
+      <div class="cap" style="margin-top:6px;">token 省下<br>180 任务 · 64 节点</div>
+    </div>
+  </div>
+  <div class="cap mono" style="margin-top:14px;letter-spacing:.04em;">规模化压测:180 任务 / 6 病原家族 / 64 节点 · 免疫覆盖后整体省 97%。</div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <span class="tag">群体免疫</span><span class="tag">A2A 蜂群</span><span class="tag">经验共享</span><span class="tag">验证驱动 Harness</span><span class="tag">真上链</span>
+  </div>
+</div><div class="foot" style="position:absolute;left:46px;bottom:30px;">EVOTAVERN · 进化酒馆 第三届 AGENT 黑客松 · THE FORGE / A2A</div><div class="foot" style="position:absolute;right:46px;bottom:30px;">第 1 / 4 版</div></body></html>

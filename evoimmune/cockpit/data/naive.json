@@ -1,0 +1,2121 @@
+{
+  "metrics": {
+    "mode": "naive",
+    "tasks": 48,
+    "solved_by_llm": 48,
+    "immune_inherited": 0,
+    "failed": 0,
+    "tokens_spent": 72000,
+    "attempts_total": 48,
+    "by_family": {
+      "gene_array_append": {
+        "solved": 8,
+        "immune": 0
+      },
+      "gene_length_call": {
+        "solved": 8,
+        "immune": 0
+      },
+      "gene_to_string_case": {
+        "solved": 8,
+        "immune": 0
+      },
+      "gene_to_upper": {
+        "solved": 8,
+        "immune": 0
+      },
+      "gene_index_of": {
+        "solved": 8,
+        "immune": 0
+      },
+      "gene_const_reassign": {
+        "solved": 8,
+        "immune": 0
+      }
+    },
+    "immunity_coverage": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "events": [
+    {
+      "t": 0,
+      "node": 0,
+      "taskId": "t0_gene_array_append_0",
+      "family": "gene_array_append",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "append is not a function"
+      ]
+    },
+    {
+      "t": 1,
+      "node": 0,
+      "taskId": "t0_gene_array_append_0",
+      "family": "gene_array_append",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 2,
+      "node": 0,
+      "taskId": "t0_gene_array_append_0",
+      "family": "gene_array_append",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 3,
+      "node": 0,
+      "taskId": "t0_gene_array_append_0",
+      "family": "gene_array_append",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 4,
+      "node": 1,
+      "taskId": "t1_gene_length_call_0",
+      "family": "gene_length_call",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "length is not a function"
+      ]
+    },
+    {
+      "t": 5,
+      "node": 1,
+      "taskId": "t1_gene_length_call_0",
+      "family": "gene_length_call",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 6,
+      "node": 1,
+      "taskId": "t1_gene_length_call_0",
+      "family": "gene_length_call",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 7,
+      "node": 1,
+      "taskId": "t1_gene_length_call_0",
+      "family": "gene_length_call",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 8,
+      "node": 2,
+      "taskId": "t2_gene_to_string_case_0",
+      "family": "gene_to_string_case",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "tostring is not a function"
+      ]
+    },
+    {
+      "t": 9,
+      "node": 2,
+      "taskId": "t2_gene_to_string_case_0",
+      "family": "gene_to_string_case",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 10,
+      "node": 2,
+      "taskId": "t2_gene_to_string_case_0",
+      "family": "gene_to_string_case",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 11,
+      "node": 2,
+      "taskId": "t2_gene_to_string_case_0",
+      "family": "gene_to_string_case",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 12,
+      "node": 3,
+      "taskId": "t3_gene_to_upper_0",
+      "family": "gene_to_upper",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "touppercase is not a function"
+      ]
+    },
+    {
+      "t": 13,
+      "node": 3,
+      "taskId": "t3_gene_to_upper_0",
+      "family": "gene_to_upper",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 14,
+      "node": 3,
+      "taskId": "t3_gene_to_upper_0",
+      "family": "gene_to_upper",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 15,
+      "node": 3,
+      "taskId": "t3_gene_to_upper_0",
+      "family": "gene_to_upper",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 16,
+      "node": 4,
+      "taskId": "t4_gene_index_of_0",
+      "family": "gene_index_of",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "indexof is not a function"
+      ]
+    },
+    {
+      "t": 17,
+      "node": 4,
+      "taskId": "t4_gene_index_of_0",
+      "family": "gene_index_of",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 18,
+      "node": 4,
+      "taskId": "t4_gene_index_of_0",
+      "family": "gene_index_of",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 19,
+      "node": 4,
+      "taskId": "t4_gene_index_of_0",
+      "family": "gene_index_of",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 20,
+      "node": 5,
+      "taskId": "t5_gene_const_reassign_0",
+      "family": "gene_const_reassign",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "assignment to constant variable."
+      ]
+    },
+    {
+      "t": 21,
+      "node": 5,
+      "taskId": "t5_gene_const_reassign_0",
+      "family": "gene_const_reassign",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 22,
+      "node": 5,
+      "taskId": "t5_gene_const_reassign_0",
+      "family": "gene_const_reassign",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 23,
+      "node": 5,
+      "taskId": "t5_gene_const_reassign_0",
+      "family": "gene_const_reassign",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 24,
+      "node": 6,
+      "taskId": "t6_gene_array_append_1",
+      "family": "gene_array_append",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "append is not a function"
+      ]
+    },
+    {
+      "t": 25,
+      "node": 6,
+      "taskId": "t6_gene_array_append_1",
+      "family": "gene_array_append",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 26,
+      "node": 6,
+      "taskId": "t6_gene_array_append_1",
+      "family": "gene_array_append",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 27,
+      "node": 6,
+      "taskId": "t6_gene_array_append_1",
+      "family": "gene_array_append",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 28,
+      "node": 7,
+      "taskId": "t7_gene_length_call_1",
+      "family": "gene_length_call",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "length is not a function"
+      ]
+    },
+    {
+      "t": 29,
+      "node": 7,
+      "taskId": "t7_gene_length_call_1",
+      "family": "gene_length_call",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 30,
+      "node": 7,
+      "taskId": "t7_gene_length_call_1",
+      "family": "gene_length_call",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 31,
+      "node": 7,
+      "taskId": "t7_gene_length_call_1",
+      "family": "gene_length_call",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 32,
+      "node": 8,
+      "taskId": "t8_gene_to_string_case_1",
+      "family": "gene_to_string_case",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "tostring is not a function"
+      ]
+    },
+    {
+      "t": 33,
+      "node": 8,
+      "taskId": "t8_gene_to_string_case_1",
+      "family": "gene_to_string_case",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 34,
+      "node": 8,
+      "taskId": "t8_gene_to_string_case_1",
+      "family": "gene_to_string_case",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 35,
+      "node": 8,
+      "taskId": "t8_gene_to_string_case_1",
+      "family": "gene_to_string_case",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 36,
+      "node": 9,
+      "taskId": "t9_gene_to_upper_1",
+      "family": "gene_to_upper",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "touppercase is not a function"
+      ]
+    },
+    {
+      "t": 37,
+      "node": 9,
+      "taskId": "t9_gene_to_upper_1",
+      "family": "gene_to_upper",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 38,
+      "node": 9,
+      "taskId": "t9_gene_to_upper_1",
+      "family": "gene_to_upper",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 39,
+      "node": 9,
+      "taskId": "t9_gene_to_upper_1",
+      "family": "gene_to_upper",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 40,
+      "node": 10,
+      "taskId": "t10_gene_index_of_1",
+      "family": "gene_index_of",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "indexof is not a function"
+      ]
+    },
+    {
+      "t": 41,
+      "node": 10,
+      "taskId": "t10_gene_index_of_1",
+      "family": "gene_index_of",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 42,
+      "node": 10,
+      "taskId": "t10_gene_index_of_1",
+      "family": "gene_index_of",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 43,
+      "node": 10,
+      "taskId": "t10_gene_index_of_1",
+      "family": "gene_index_of",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 44,
+      "node": 11,
+      "taskId": "t11_gene_const_reassign_1",
+      "family": "gene_const_reassign",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "assignment to constant variable."
+      ]
+    },
+    {
+      "t": 45,
+      "node": 11,
+      "taskId": "t11_gene_const_reassign_1",
+      "family": "gene_const_reassign",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 46,
+      "node": 11,
+      "taskId": "t11_gene_const_reassign_1",
+      "family": "gene_const_reassign",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 47,
+      "node": 11,
+      "taskId": "t11_gene_const_reassign_1",
+      "family": "gene_const_reassign",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 48,
+      "node": 0,
+      "taskId": "t12_gene_array_append_2",
+      "family": "gene_array_append",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "append is not a function"
+      ]
+    },
+    {
+      "t": 49,
+      "node": 0,
+      "taskId": "t12_gene_array_append_2",
+      "family": "gene_array_append",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 50,
+      "node": 0,
+      "taskId": "t12_gene_array_append_2",
+      "family": "gene_array_append",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 51,
+      "node": 0,
+      "taskId": "t12_gene_array_append_2",
+      "family": "gene_array_append",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 52,
+      "node": 1,
+      "taskId": "t13_gene_length_call_2",
+      "family": "gene_length_call",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "length is not a function"
+      ]
+    },
+    {
+      "t": 53,
+      "node": 1,
+      "taskId": "t13_gene_length_call_2",
+      "family": "gene_length_call",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 54,
+      "node": 1,
+      "taskId": "t13_gene_length_call_2",
+      "family": "gene_length_call",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 55,
+      "node": 1,
+      "taskId": "t13_gene_length_call_2",
+      "family": "gene_length_call",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 56,
+      "node": 2,
+      "taskId": "t14_gene_to_string_case_2",
+      "family": "gene_to_string_case",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "tostring is not a function"
+      ]
+    },
+    {
+      "t": 57,
+      "node": 2,
+      "taskId": "t14_gene_to_string_case_2",
+      "family": "gene_to_string_case",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 58,
+      "node": 2,
+      "taskId": "t14_gene_to_string_case_2",
+      "family": "gene_to_string_case",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 59,
+      "node": 2,
+      "taskId": "t14_gene_to_string_case_2",
+      "family": "gene_to_string_case",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 60,
+      "node": 3,
+      "taskId": "t15_gene_to_upper_2",
+      "family": "gene_to_upper",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "touppercase is not a function"
+      ]
+    },
+    {
+      "t": 61,
+      "node": 3,
+      "taskId": "t15_gene_to_upper_2",
+      "family": "gene_to_upper",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 62,
+      "node": 3,
+      "taskId": "t15_gene_to_upper_2",
+      "family": "gene_to_upper",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 63,
+      "node": 3,
+      "taskId": "t15_gene_to_upper_2",
+      "family": "gene_to_upper",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 64,
+      "node": 4,
+      "taskId": "t16_gene_index_of_2",
+      "family": "gene_index_of",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "indexof is not a function"
+      ]
+    },
+    {
+      "t": 65,
+      "node": 4,
+      "taskId": "t16_gene_index_of_2",
+      "family": "gene_index_of",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 66,
+      "node": 4,
+      "taskId": "t16_gene_index_of_2",
+      "family": "gene_index_of",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 67,
+      "node": 4,
+      "taskId": "t16_gene_index_of_2",
+      "family": "gene_index_of",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 68,
+      "node": 5,
+      "taskId": "t17_gene_const_reassign_2",
+      "family": "gene_const_reassign",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "assignment to constant variable."
+      ]
+    },
+    {
+      "t": 69,
+      "node": 5,
+      "taskId": "t17_gene_const_reassign_2",
+      "family": "gene_const_reassign",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 70,
+      "node": 5,
+      "taskId": "t17_gene_const_reassign_2",
+      "family": "gene_const_reassign",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 71,
+      "node": 5,
+      "taskId": "t17_gene_const_reassign_2",
+      "family": "gene_const_reassign",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 72,
+      "node": 6,
+      "taskId": "t18_gene_array_append_3",
+      "family": "gene_array_append",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "append is not a function"
+      ]
+    },
+    {
+      "t": 73,
+      "node": 6,
+      "taskId": "t18_gene_array_append_3",
+      "family": "gene_array_append",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 74,
+      "node": 6,
+      "taskId": "t18_gene_array_append_3",
+      "family": "gene_array_append",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 75,
+      "node": 6,
+      "taskId": "t18_gene_array_append_3",
+      "family": "gene_array_append",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 76,
+      "node": 7,
+      "taskId": "t19_gene_length_call_3",
+      "family": "gene_length_call",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "length is not a function"
+      ]
+    },
+    {
+      "t": 77,
+      "node": 7,
+      "taskId": "t19_gene_length_call_3",
+      "family": "gene_length_call",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 78,
+      "node": 7,
+      "taskId": "t19_gene_length_call_3",
+      "family": "gene_length_call",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 79,
+      "node": 7,
+      "taskId": "t19_gene_length_call_3",
+      "family": "gene_length_call",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 80,
+      "node": 8,
+      "taskId": "t20_gene_to_string_case_3",
+      "family": "gene_to_string_case",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "tostring is not a function"
+      ]
+    },
+    {
+      "t": 81,
+      "node": 8,
+      "taskId": "t20_gene_to_string_case_3",
+      "family": "gene_to_string_case",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 82,
+      "node": 8,
+      "taskId": "t20_gene_to_string_case_3",
+      "family": "gene_to_string_case",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 83,
+      "node": 8,
+      "taskId": "t20_gene_to_string_case_3",
+      "family": "gene_to_string_case",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 84,
+      "node": 9,
+      "taskId": "t21_gene_to_upper_3",
+      "family": "gene_to_upper",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "touppercase is not a function"
+      ]
+    },
+    {
+      "t": 85,
+      "node": 9,
+      "taskId": "t21_gene_to_upper_3",
+      "family": "gene_to_upper",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 86,
+      "node": 9,
+      "taskId": "t21_gene_to_upper_3",
+      "family": "gene_to_upper",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 87,
+      "node": 9,
+      "taskId": "t21_gene_to_upper_3",
+      "family": "gene_to_upper",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 88,
+      "node": 10,
+      "taskId": "t22_gene_index_of_3",
+      "family": "gene_index_of",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "indexof is not a function"
+      ]
+    },
+    {
+      "t": 89,
+      "node": 10,
+      "taskId": "t22_gene_index_of_3",
+      "family": "gene_index_of",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 90,
+      "node": 10,
+      "taskId": "t22_gene_index_of_3",
+      "family": "gene_index_of",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 91,
+      "node": 10,
+      "taskId": "t22_gene_index_of_3",
+      "family": "gene_index_of",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 92,
+      "node": 11,
+      "taskId": "t23_gene_const_reassign_3",
+      "family": "gene_const_reassign",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "assignment to constant variable."
+      ]
+    },
+    {
+      "t": 93,
+      "node": 11,
+      "taskId": "t23_gene_const_reassign_3",
+      "family": "gene_const_reassign",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 94,
+      "node": 11,
+      "taskId": "t23_gene_const_reassign_3",
+      "family": "gene_const_reassign",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 95,
+      "node": 11,
+      "taskId": "t23_gene_const_reassign_3",
+      "family": "gene_const_reassign",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 96,
+      "node": 0,
+      "taskId": "t24_gene_array_append_4",
+      "family": "gene_array_append",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "append is not a function"
+      ]
+    },
+    {
+      "t": 97,
+      "node": 0,
+      "taskId": "t24_gene_array_append_4",
+      "family": "gene_array_append",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 98,
+      "node": 0,
+      "taskId": "t24_gene_array_append_4",
+      "family": "gene_array_append",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 99,
+      "node": 0,
+      "taskId": "t24_gene_array_append_4",
+      "family": "gene_array_append",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 100,
+      "node": 1,
+      "taskId": "t25_gene_length_call_4",
+      "family": "gene_length_call",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "length is not a function"
+      ]
+    },
+    {
+      "t": 101,
+      "node": 1,
+      "taskId": "t25_gene_length_call_4",
+      "family": "gene_length_call",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 102,
+      "node": 1,
+      "taskId": "t25_gene_length_call_4",
+      "family": "gene_length_call",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 103,
+      "node": 1,
+      "taskId": "t25_gene_length_call_4",
+      "family": "gene_length_call",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 104,
+      "node": 2,
+      "taskId": "t26_gene_to_string_case_4",
+      "family": "gene_to_string_case",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "tostring is not a function"
+      ]
+    },
+    {
+      "t": 105,
+      "node": 2,
+      "taskId": "t26_gene_to_string_case_4",
+      "family": "gene_to_string_case",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 106,
+      "node": 2,
+      "taskId": "t26_gene_to_string_case_4",
+      "family": "gene_to_string_case",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 107,
+      "node": 2,
+      "taskId": "t26_gene_to_string_case_4",
+      "family": "gene_to_string_case",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 108,
+      "node": 3,
+      "taskId": "t27_gene_to_upper_4",
+      "family": "gene_to_upper",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "touppercase is not a function"
+      ]
+    },
+    {
+      "t": 109,
+      "node": 3,
+      "taskId": "t27_gene_to_upper_4",
+      "family": "gene_to_upper",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 110,
+      "node": 3,
+      "taskId": "t27_gene_to_upper_4",
+      "family": "gene_to_upper",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 111,
+      "node": 3,
+      "taskId": "t27_gene_to_upper_4",
+      "family": "gene_to_upper",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 112,
+      "node": 4,
+      "taskId": "t28_gene_index_of_4",
+      "family": "gene_index_of",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "indexof is not a function"
+      ]
+    },
+    {
+      "t": 113,
+      "node": 4,
+      "taskId": "t28_gene_index_of_4",
+      "family": "gene_index_of",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 114,
+      "node": 4,
+      "taskId": "t28_gene_index_of_4",
+      "family": "gene_index_of",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 115,
+      "node": 4,
+      "taskId": "t28_gene_index_of_4",
+      "family": "gene_index_of",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 116,
+      "node": 5,
+      "taskId": "t29_gene_const_reassign_4",
+      "family": "gene_const_reassign",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "assignment to constant variable."
+      ]
+    },
+    {
+      "t": 117,
+      "node": 5,
+      "taskId": "t29_gene_const_reassign_4",
+      "family": "gene_const_reassign",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 118,
+      "node": 5,
+      "taskId": "t29_gene_const_reassign_4",
+      "family": "gene_const_reassign",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 119,
+      "node": 5,
+      "taskId": "t29_gene_const_reassign_4",
+      "family": "gene_const_reassign",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 120,
+      "node": 6,
+      "taskId": "t30_gene_array_append_5",
+      "family": "gene_array_append",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "append is not a function"
+      ]
+    },
+    {
+      "t": 121,
+      "node": 6,
+      "taskId": "t30_gene_array_append_5",
+      "family": "gene_array_append",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 122,
+      "node": 6,
+      "taskId": "t30_gene_array_append_5",
+      "family": "gene_array_append",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 123,
+      "node": 6,
+      "taskId": "t30_gene_array_append_5",
+      "family": "gene_array_append",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 124,
+      "node": 7,
+      "taskId": "t31_gene_length_call_5",
+      "family": "gene_length_call",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "length is not a function"
+      ]
+    },
+    {
+      "t": 125,
+      "node": 7,
+      "taskId": "t31_gene_length_call_5",
+      "family": "gene_length_call",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 126,
+      "node": 7,
+      "taskId": "t31_gene_length_call_5",
+      "family": "gene_length_call",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 127,
+      "node": 7,
+      "taskId": "t31_gene_length_call_5",
+      "family": "gene_length_call",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 128,
+      "node": 8,
+      "taskId": "t32_gene_to_string_case_5",
+      "family": "gene_to_string_case",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "tostring is not a function"
+      ]
+    },
+    {
+      "t": 129,
+      "node": 8,
+      "taskId": "t32_gene_to_string_case_5",
+      "family": "gene_to_string_case",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 130,
+      "node": 8,
+      "taskId": "t32_gene_to_string_case_5",
+      "family": "gene_to_string_case",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 131,
+      "node": 8,
+      "taskId": "t32_gene_to_string_case_5",
+      "family": "gene_to_string_case",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 132,
+      "node": 9,
+      "taskId": "t33_gene_to_upper_5",
+      "family": "gene_to_upper",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "touppercase is not a function"
+      ]
+    },
+    {
+      "t": 133,
+      "node": 9,
+      "taskId": "t33_gene_to_upper_5",
+      "family": "gene_to_upper",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 134,
+      "node": 9,
+      "taskId": "t33_gene_to_upper_5",
+      "family": "gene_to_upper",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 135,
+      "node": 9,
+      "taskId": "t33_gene_to_upper_5",
+      "family": "gene_to_upper",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 136,
+      "node": 10,
+      "taskId": "t34_gene_index_of_5",
+      "family": "gene_index_of",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "indexof is not a function"
+      ]
+    },
+    {
+      "t": 137,
+      "node": 10,
+      "taskId": "t34_gene_index_of_5",
+      "family": "gene_index_of",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 138,
+      "node": 10,
+      "taskId": "t34_gene_index_of_5",
+      "family": "gene_index_of",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 139,
+      "node": 10,
+      "taskId": "t34_gene_index_of_5",
+      "family": "gene_index_of",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 140,
+      "node": 11,
+      "taskId": "t35_gene_const_reassign_5",
+      "family": "gene_const_reassign",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "assignment to constant variable."
+      ]
+    },
+    {
+      "t": 141,
+      "node": 11,
+      "taskId": "t35_gene_const_reassign_5",
+      "family": "gene_const_reassign",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 142,
+      "node": 11,
+      "taskId": "t35_gene_const_reassign_5",
+      "family": "gene_const_reassign",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 143,
+      "node": 11,
+      "taskId": "t35_gene_const_reassign_5",
+      "family": "gene_const_reassign",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 144,
+      "node": 0,
+      "taskId": "t36_gene_array_append_6",
+      "family": "gene_array_append",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "append is not a function"
+      ]
+    },
+    {
+      "t": 145,
+      "node": 0,
+      "taskId": "t36_gene_array_append_6",
+      "family": "gene_array_append",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 146,
+      "node": 0,
+      "taskId": "t36_gene_array_append_6",
+      "family": "gene_array_append",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 147,
+      "node": 0,
+      "taskId": "t36_gene_array_append_6",
+      "family": "gene_array_append",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 148,
+      "node": 1,
+      "taskId": "t37_gene_length_call_6",
+      "family": "gene_length_call",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "length is not a function"
+      ]
+    },
+    {
+      "t": 149,
+      "node": 1,
+      "taskId": "t37_gene_length_call_6",
+      "family": "gene_length_call",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 150,
+      "node": 1,
+      "taskId": "t37_gene_length_call_6",
+      "family": "gene_length_call",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 151,
+      "node": 1,
+      "taskId": "t37_gene_length_call_6",
+      "family": "gene_length_call",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 152,
+      "node": 2,
+      "taskId": "t38_gene_to_string_case_6",
+      "family": "gene_to_string_case",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "tostring is not a function"
+      ]
+    },
+    {
+      "t": 153,
+      "node": 2,
+      "taskId": "t38_gene_to_string_case_6",
+      "family": "gene_to_string_case",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 154,
+      "node": 2,
+      "taskId": "t38_gene_to_string_case_6",
+      "family": "gene_to_string_case",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 155,
+      "node": 2,
+      "taskId": "t38_gene_to_string_case_6",
+      "family": "gene_to_string_case",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 156,
+      "node": 3,
+      "taskId": "t39_gene_to_upper_6",
+      "family": "gene_to_upper",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "touppercase is not a function"
+      ]
+    },
+    {
+      "t": 157,
+      "node": 3,
+      "taskId": "t39_gene_to_upper_6",
+      "family": "gene_to_upper",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 158,
+      "node": 3,
+      "taskId": "t39_gene_to_upper_6",
+      "family": "gene_to_upper",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 159,
+      "node": 3,
+      "taskId": "t39_gene_to_upper_6",
+      "family": "gene_to_upper",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 160,
+      "node": 4,
+      "taskId": "t40_gene_index_of_6",
+      "family": "gene_index_of",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "indexof is not a function"
+      ]
+    },
+    {
+      "t": 161,
+      "node": 4,
+      "taskId": "t40_gene_index_of_6",
+      "family": "gene_index_of",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 162,
+      "node": 4,
+      "taskId": "t40_gene_index_of_6",
+      "family": "gene_index_of",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 163,
+      "node": 4,
+      "taskId": "t40_gene_index_of_6",
+      "family": "gene_index_of",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 164,
+      "node": 5,
+      "taskId": "t41_gene_const_reassign_6",
+      "family": "gene_const_reassign",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "assignment to constant variable."
+      ]
+    },
+    {
+      "t": 165,
+      "node": 5,
+      "taskId": "t41_gene_const_reassign_6",
+      "family": "gene_const_reassign",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 166,
+      "node": 5,
+      "taskId": "t41_gene_const_reassign_6",
+      "family": "gene_const_reassign",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 167,
+      "node": 5,
+      "taskId": "t41_gene_const_reassign_6",
+      "family": "gene_const_reassign",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 168,
+      "node": 6,
+      "taskId": "t42_gene_array_append_7",
+      "family": "gene_array_append",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "append is not a function"
+      ]
+    },
+    {
+      "t": 169,
+      "node": 6,
+      "taskId": "t42_gene_array_append_7",
+      "family": "gene_array_append",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 170,
+      "node": 6,
+      "taskId": "t42_gene_array_append_7",
+      "family": "gene_array_append",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 171,
+      "node": 6,
+      "taskId": "t42_gene_array_append_7",
+      "family": "gene_array_append",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 172,
+      "node": 7,
+      "taskId": "t43_gene_length_call_7",
+      "family": "gene_length_call",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "length is not a function"
+      ]
+    },
+    {
+      "t": 173,
+      "node": 7,
+      "taskId": "t43_gene_length_call_7",
+      "family": "gene_length_call",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 174,
+      "node": 7,
+      "taskId": "t43_gene_length_call_7",
+      "family": "gene_length_call",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 175,
+      "node": 7,
+      "taskId": "t43_gene_length_call_7",
+      "family": "gene_length_call",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 176,
+      "node": 8,
+      "taskId": "t44_gene_to_string_case_7",
+      "family": "gene_to_string_case",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "tostring is not a function"
+      ]
+    },
+    {
+      "t": 177,
+      "node": 8,
+      "taskId": "t44_gene_to_string_case_7",
+      "family": "gene_to_string_case",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 178,
+      "node": 8,
+      "taskId": "t44_gene_to_string_case_7",
+      "family": "gene_to_string_case",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 179,
+      "node": 8,
+      "taskId": "t44_gene_to_string_case_7",
+      "family": "gene_to_string_case",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 180,
+      "node": 9,
+      "taskId": "t45_gene_to_upper_7",
+      "family": "gene_to_upper",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "touppercase is not a function"
+      ]
+    },
+    {
+      "t": 181,
+      "node": 9,
+      "taskId": "t45_gene_to_upper_7",
+      "family": "gene_to_upper",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 182,
+      "node": 9,
+      "taskId": "t45_gene_to_upper_7",
+      "family": "gene_to_upper",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 183,
+      "node": 9,
+      "taskId": "t45_gene_to_upper_7",
+      "family": "gene_to_upper",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 184,
+      "node": 10,
+      "taskId": "t46_gene_index_of_7",
+      "family": "gene_index_of",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "indexof is not a function"
+      ]
+    },
+    {
+      "t": 185,
+      "node": 10,
+      "taskId": "t46_gene_index_of_7",
+      "family": "gene_index_of",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 186,
+      "node": 10,
+      "taskId": "t46_gene_index_of_7",
+      "family": "gene_index_of",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 187,
+      "node": 10,
+      "taskId": "t46_gene_index_of_7",
+      "family": "gene_index_of",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    },
+    {
+      "t": 188,
+      "node": 11,
+      "taskId": "t47_gene_const_reassign_7",
+      "family": "gene_const_reassign",
+      "phase": "infected",
+      "signals": [
+        "TypeError",
+        "assignment to constant variable."
+      ]
+    },
+    {
+      "t": 189,
+      "node": 11,
+      "taskId": "t47_gene_const_reassign_7",
+      "family": "gene_const_reassign",
+      "phase": "propose",
+      "attempt": 1
+    },
+    {
+      "t": 190,
+      "node": 11,
+      "taskId": "t47_gene_const_reassign_7",
+      "family": "gene_const_reassign",
+      "phase": "validate",
+      "attempt": 1,
+      "ok": true,
+      "failToPass": true,
+      "passToPass": true,
+      "regressSkipped": true
+    },
+    {
+      "t": 191,
+      "node": 11,
+      "taskId": "t47_gene_const_reassign_7",
+      "family": "gene_const_reassign",
+      "phase": "cured",
+      "via": "solve",
+      "attempts": 1,
+      "cost_tokens": 1500,
+      "llm": false
+    }
+  ],
+  "status": {
+    "schema_version": "1.8.0",
+    "statistics": {
+      "total_genes": 0,
+      "total_capsules": 48,
+      "total_events": 0,
+      "memory_graph_entries": 48,
+      "success_rate": 0
+    },
+    "recent_events": [],
+    "gene_categories": {
+      "repair": 0,
+      "optimize": 0,
+      "innovate": 0
+    }
+  }
+}

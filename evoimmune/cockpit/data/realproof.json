@@ -1,0 +1,8 @@
+{
+  "model": "evomap-gemini-3.1-pro-preview",
+  "tasks": 12,
+  "real_solves": 3,
+  "immune_inherited": 9,
+  "real_tokens": 1149,
+  "verified_at": "2026-06-19"
+}
