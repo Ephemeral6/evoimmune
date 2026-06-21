@@ -142,7 +142,7 @@ export default function App() {
 
         <div className="mt-4">
           <ScenarioControls mode={state.mode} running={state.running} connected={connected}
-            realModel={realModel} publishing={state.publishing} tech={tech}
+            realModel={realModel} publishing={state.publishing} tech={tech} publicDemo={!!status?.publicDemo}
             onMode={(m) => dispatch({ type: 'set_mode', mode: m })} onRun={run}
             onRealModel={setRealModel} onPublish={publish} onAutoPlay={autoPlay} status={status} />
         </div>

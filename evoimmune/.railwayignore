@@ -1,0 +1,10 @@
+# 绝不上传密钥
+.env
+*.key
+# 依赖与产物(Railway 上重新安装/构建)
+node_modules/
+web/node_modules/
+web/dist/
+# 运行时缓存
+.gepdata/
+*.log

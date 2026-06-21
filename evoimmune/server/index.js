@@ -2,6 +2,7 @@
 // REST 触发场景,WS 实时推送蜂群事件。支持 live(真跑)/ recorded(回放预生成数据)双模式。
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
+import fastifyStatic from '@fastify/static';
 import { WebSocketServer } from 'ws';
 import { readFileSync, existsSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -20,7 +21,9 @@ let publishCounter = 0;
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 if (existsSync(resolve(ROOT, '.env'))) { try { process.loadEnvFile(resolve(ROOT, '.env')); } catch { /* */ } }
 
-const PORT = Number(process.env.CONSOLE_PORT || 8787);
+const PORT = Number(process.env.PORT || process.env.CONSOLE_PORT || 8787);
+// 公网安全模式:服务器不放任何密钥,锁定 recorded 回放,publish 回放录制的真实上链数据。
+const PUBLIC_DEMO = process.env.PUBLIC_DEMO === '1' || process.env.PUBLIC_DEMO === 'true';
 const FAM_META = FAMILIES.map((f) => ({ id: f.id, name: f.name, emoji: f.emoji }));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -94,9 +97,22 @@ async function runLiveImmune({ runId, params }) {
   broadcast({ type: 'run_end', runId, scenario: 'immune', metrics });
 }
 
+// 公网/无凭证时:回放录制的真实上链结果(零密钥、零网络),保证"拍电报上链"的故事完整。
+async function replayPublish({ runId }) {
+  const p = readJson('publish.json') || {};
+  broadcast({ type: 'publishing', runId, label: p.node_name || 'evoimmune' });
+  await sleep(900);
+  broadcast({
+    type: 'published', runId, ok: p.ok !== false,
+    bundle_id: p.bundle_id || null, decision: p.status || p.decision || null, reason: p.decision_note || null,
+    gene_asset_id: p.gene_asset_id || null, capsule_asset_id: p.capsule_asset_id || null,
+    node: p.node_id || null, at: p.published_at || new Date().toISOString(), replay: true,
+  });
+}
+
 async function runPublish({ runId }) {
   const { EVOMAP_NODE_ID, EVOMAP_NODE_SECRET, EVOMAP_HUB_URL = 'https://evomap.ai' } = process.env;
-  if (!EVOMAP_NODE_ID || !EVOMAP_NODE_SECRET) { broadcast({ type: 'run_error', runId, error: '未注册 A2A 节点(EVOMAP_NODE_ID/SECRET)' }); return; }
+  if (PUBLIC_DEMO || !EVOMAP_NODE_ID || !EVOMAP_NODE_SECRET) return replayPublish({ runId });
   const nonce = String(Date.now()).slice(-6);
   // 轮换家族(跳过 idx 0=append,它最易被 trigger_dedup 限流)
   const idx = 1 + (publishCounter++ % Math.max(1, ANTIBODY_COUNT - 1));
@@ -144,6 +160,8 @@ async function runHarnessScenario({ runId, mode, params }) {
 }
 
 async function runScenario({ scenario, mode, params, runId }) {
+  // 公网安全模式:强制 recorded + stub,杜绝任何对赞助 API / A2A Hub 的真实调用。
+  if (PUBLIC_DEMO) { if (scenario === 'immune') mode = 'recorded'; params = { ...params, solver: 'stub' }; }
   broadcast({ type: 'run_start', runId, scenario, mode });
   if (scenario === 'publish') return runPublish({ runId });
   if (scenario === 'harness') return runHarnessScenario({ runId, mode, params });
@@ -160,6 +178,19 @@ async function runScenario({ scenario, mode, params, runId }) {
 const app = Fastify({ logger: false });
 await app.register(cors, { origin: true });
 
+// 生产环境:同源托管前端构建产物(web/dist),/api + /ws 共用同一端口与域名。
+const DIST = resolve(ROOT, 'web/dist');
+if (existsSync(DIST)) {
+  await app.register(fastifyStatic, { root: DIST, prefix: '/' });
+  app.setNotFoundHandler((req, reply) => {
+    const url = req.raw.url || '';
+    if (req.raw.method === 'GET' && !url.startsWith('/api') && !url.startsWith('/ws')) {
+      return reply.sendFile('index.html'); // SPA 回退
+    }
+    reply.code(404).send({ error: 'not found' });
+  });
+}
+
 app.get('/api/status', async () => ({
   ready: true,
   families: FAM_META,
@@ -168,6 +199,7 @@ app.get('/api/status', async () => ({
   solver: process.env.EVOIMMUNE_SOLVER === 'llm' ? 'llm' : 'stub',
   hub: process.env.EVOMAP_HUB_URL || 'https://evomap.ai',
   clients: clients.size,
+  publicDemo: PUBLIC_DEMO,
 }));
 
 app.get('/api/snapshot', async () => readSnapshot());

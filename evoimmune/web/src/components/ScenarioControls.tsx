@@ -2,10 +2,10 @@ import { Play, Radio, Database, Wifi, WifiOff, Link2, Cpu, Clapperboard } from '
 import type { Status } from '../types';
 
 export default function ScenarioControls({
-  mode, running, connected, realModel, publishing, tech,
+  mode, running, connected, realModel, publishing, tech, publicDemo,
   onMode, onRun, onRealModel, onPublish, onAutoPlay, status,
 }: {
-  mode: string; running: boolean; connected: boolean; realModel: boolean; publishing: boolean; tech?: boolean;
+  mode: string; running: boolean; connected: boolean; realModel: boolean; publishing: boolean; tech?: boolean; publicDemo?: boolean;
   onMode: (m: string) => void; onRun: (s: string) => void; onRealModel: (b: boolean) => void;
   onPublish: () => void; onAutoPlay: () => void; status: Status | null;
 }) {
@@ -20,9 +20,11 @@ export default function ScenarioControls({
         <button onClick={() => onMode('recorded')} className={`flex items-center gap-1.5 px-3 py-1.5 ${mode === 'recorded' ? 'bg-accent text-white' : 'text-dim'}`}>
           <Database size={14} /> {tech ? 'recorded' : '卷宗回放'}
         </button>
-        <button onClick={() => onMode('live')} className={`flex items-center gap-1.5 px-3 py-1.5 ${mode === 'live' ? 'bg-accent text-white' : 'text-dim'}`}>
-          <Radio size={14} /> {tech ? 'live' : '实况直播'}
-        </button>
+        {!publicDemo && (
+          <button onClick={() => onMode('live')} className={`flex items-center gap-1.5 px-3 py-1.5 ${mode === 'live' ? 'bg-accent text-white' : 'text-dim'}`}>
+            <Radio size={14} /> {tech ? 'live' : '实况直播'}
+          </button>
+        )}
       </div>
 
       <button disabled={running} onClick={() => onRun('immune')}
@@ -43,6 +45,11 @@ export default function ScenarioControls({
       </button>
 
       <div className="ml-auto flex items-center gap-3 text-xs text-dim">
+        {publicDemo && (
+          <span className="rounded-sm border border-amber/50 px-2 py-0.5 font-tw text-[10px] tracking-western text-amber">
+            公开演示 · 离线回放真实数据
+          </span>
+        )}
         <span className="flex items-center gap-1">
           {connected ? <Wifi size={13} className="text-green" /> : <WifiOff size={13} className="text-red" />}
           {connected ? 'WS 已连' : 'WS 断开'}

@@ -7,6 +7,7 @@ export type Status = {
   solver: string;
   hub: string;
   clients?: number;
+  publicDemo?: boolean;
 };
 export type WsMsg = { type: string; [k: string]: any };
 export type TaskState = { family: string; phase: string; via?: string; similarity?: number };
